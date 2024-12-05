@@ -6,12 +6,14 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: Setup - Install openscad
+      - name: Setup - Install tooling
         run: |
           sudo apt-get update
-          sudo apt-get install openscad -y
+          sudo apt-get install openscad meshlab admesh -y
           openscad --version
-          which openscad
+          admesh --version
+          chmod 0700 /run/user/1000
+          meshlabserver | grep version
       - name: Batch Convert and upload
         run: |        
           chmod +x CI.Render.sh
