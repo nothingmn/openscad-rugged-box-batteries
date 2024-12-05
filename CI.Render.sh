@@ -61,8 +61,6 @@ generate_and_render() {
 					echo "Completed admesh fix to $admesh_file, starting meshlabserver"
 
 					# Run MeshLab
-					Xvfb :99 -screen 0 1024x768x16 &
-        			export DISPLAY=:99
 					time meshlabserver -i "$admesh_file" -o "$meshlab_file" -m vn fn -s meshclean.mlx
 					if [ $? -eq 0 ]; then
 						echo "Completed meshlabserver fix to $meshlab_file, all done"
