@@ -12,6 +12,8 @@ jobs:
           sudo apt-get install openscad meshlab admesh xvfb -y
           openscad --version
           admesh --version
+          Xvfb :99 -screen 0 1024x768x16 &
+          export DISPLAY=:99
           meshlabserver | grep version
       - name: Batch Convert and upload
         run: |        
