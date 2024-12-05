@@ -6,6 +6,6 @@ module battery_CR2032(num_x, num_y) {
 	diameter_mm = 20 + diameter_offset; //mm
 	height_factor_p = 0.80; //percent
 
-	battery_insert_coin(num_x, num_y, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm);
+	battery_insert_coin(num_x, num_y, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm, internalBoxWidthXMm);
 }
 

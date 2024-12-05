@@ -1,4 +1,3 @@
-//$fn=360;
 
 //Source: https://www.printables.com/model/1073708-super-customizable-rugged-box-in-openscad
 
@@ -16,12 +15,12 @@ viewBoxClosed = false;
 // *****************************
 // These settings indicate what components of the box you want to generate.
 
-// Should the bottom of the main box be generated
-generateBoxBottom = false;
-// Should the top of the main box be generated
-generateBoxTop = false;
-// Should the latches be generated
-generateLatches = false;
+// // Should the bottom of the main box be generated
+// generateBoxBottom = false;
+// // Should the top of the main box be generated
+// generateBoxTop = false;
+// // Should the latches be generated
+// generateLatches = false;
 
 // Should the gasket be generated.  NOTE: The gasket will still only be generated if the boxSealType is = 1 (Gasket)
 generateGasket = true;
@@ -39,9 +38,6 @@ generateEmptyTopBoxTPUInsert = false;
 // ***************************
 // **** Poly Level Option **** 
 // ***************************
-
-// 1 = Extra Low Poly, 2 = Low Poly, 3 = Curved 
-BoxPolygonStyle = 1; // [1:ExtraLowPoly, 2:LowPoly, 3:Curved]
 
 polyLvl = 
   BoxPolygonStyle == 1 
@@ -63,10 +59,10 @@ polyLvl =
 // // The internal height on the box bottom
 // internalboxBottomHeightZMm = 20; // .1
 
-internalBoxWidthXMm = 133.6;
-internalboxLengthYMm = 133.6;
-internalboxBottomHeightZMm = 59.36;
-internalBoxTopHeightZMm = 17.34;
+// internalBoxWidthXMm = 133.6;
+// internalboxLengthYMm = 133.6;
+// internalboxBottomHeightZMm = 59.36;
+// internalBoxTopHeightZMm = 17.34;
 
 
 // The width on the box wall and floor.  (NOTE: If you want square inside corners, the boxWallWidthMm must be > the  boxChamferRadiusMm.)
@@ -215,83 +211,4 @@ footInsertToleranceMm = 0.4; // .1
 // **********************
 
 
-// Calculated Variables
-
-// The width(X) of the outside box wall (excluding the rim width) in MM
-boxWidthXMm = internalBoxWidthXMm + (2*boxWallWidthMm);
-// The length(Y) of the outside box wall (excluding the rim width) in MM
-boxLengthYMm = internalboxLengthYMm + (2*boxWallWidthMm);
-// The height of the box top
-boxTopHeightZMm = internalBoxTopHeightZMm + boxWallWidthMm;
-// The height of the box bottom
-boxBottomHeightZMm = internalboxBottomHeightZMm + boxWallWidthMm;
-
-boxTopAndBottomSpacing = 10;
-
-// WALL Testing
-//translate([0,-50,0]) rotate([90,0,0]) linear_extrude(6) Wall2D(boxWallWidthMm, 0, boxBottomHeightZMm, true, true);
 include <Builder.scad>;
-
-
-// *************************
-// **** Battery Inserts ****
-// *************************
-//Round cells
-generate18650 = false;
-generateAA = false;
-generateAAA = false;
-generateD = false;
-generateC = false;
-generateCR132A = false;
-generate18350 = false;
-generateCR2 = false;
-//Coin cells
-generateCR2032 = true;
-//Box cells
-generate9v = false;
-
-include <Inserts/Batteries/batteries.scad>
-
-battery_count_x = 10;
-battery_count_y = 10;
-
-if(generate18650)  {
-   battery_18650(battery_count_x, battery_count_y);
-}
-
-if(generateAA)  {
-  translate([180,0,0])
-    battery_AA(battery_count_x, battery_count_y);
-}
-if(generateAAA)  {
-  translate([300,0,0])
-    battery_AAA(battery_count_x, battery_count_y);
-}
-if(generateD)  {
-  translate([300,0,0])
-    battery_D(battery_count_x, battery_count_y);
-}
-if(generateC)  {
-  translate([500,0,0])
-    battery_C(battery_count_x, battery_count_y);
-}
-if(generateCR132A)  {
-  translate([700,0,0])
-    battery_CR123A(battery_count_x, battery_count_y);
-}
-if(generate18350)  {
-  translate([750,0,0])
-    battery_18350(battery_count_x, battery_count_y);
-}
-if(generateCR2)  {
-  translate([870,0,0])
-    battery_CR2(battery_count_x, battery_count_y);
-}
-if(generateCR2032)  {
-  translate([1050,0,0])
-    battery_CR2032(battery_count_x, battery_count_y);
-}
-
-// *****************************
-// **** END Battery Inserts ****
-// *****************************

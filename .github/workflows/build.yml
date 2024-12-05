@@ -1,0 +1,61 @@
+name: 3d Creations Build
+on: [push]
+jobs:
+  Build-STLs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Setup - Install openscad
+        run: |
+          sudo apt-get update
+          sudo apt-get install openscad -y
+          openscad --version
+          which openscad
+      - name: Batch Convert and upload
+        run: |        
+          chmod +x CI.Render.sh
+          ./CI.Render.sh
+
+      - uses: edgarrc/action-7z@v1.0.4
+        with:
+          args: 7z a -t7z -mx=9 ${{ env.release_name }}.7z ./render/
+
+      #https://github.com/marketplace/actions/publish-release
+      - name: Create Draft Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name:  ${{ env.tag }}
+          release_name: ${{ env.release_name }}
+          draft: true
+          prerelease: true
+          
+      - name: Upload zip release asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: "${{ env.release_name }}.zip"
+          asset_name: "${{ env.release_name }}.zip"
+          asset_content_type: application/zip
+
+      # - name: Upload STL and GCODE files
+      #   uses: svenstaro/upload-release-action@v2
+      #   with:
+      #     repo_token: ${{ secrets.GITHUB_TOKEN }}
+      #     file: render/*
+      #     tag: ${{ env.tag }}
+      #     overwrite: true
+      #     file_glob: true
+      # - name: Publish release
+      #   uses: eregon/publish-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     release_id: ${{ steps.create_release.outputs.id }}
+
+          

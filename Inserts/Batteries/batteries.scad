@@ -8,7 +8,6 @@ include <18350.scad>
 include <CR2.scad>
 include <CR2032.scad>
 
-
 module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm) {
 	spacing =  (diameter_mm + spacing_mm);
 	height = height_mm * height_factor_p;
@@ -41,16 +40,18 @@ module battery_single(height_mm, diameter_mm) {
 }
 
 module battery_box(height, width, depth, diameter_mm, spacing_mm, height_mm, height_factor_p) {
-	
 	off = diameter_mm - spacing_mm;
 	translate([off, off, 0]) {
 		cube([width, depth, height]);
 	}
-	echo("Box Dimensions:");
-	echo("internalBoxWidthXMm=", width);
-	echo("internalboxLengthYMm=", depth);
-	echo("internalboxBottomHeightZMm=",  height_mm * height_factor_p);
-	echo("internalBoxTopHeightZMm=",  height_mm - height + spacing_mm);
+	internalBoxWidthXMm = width;
+	internalboxLengthYMm = depth;
+	internalboxBottomHeightZMm = height_mm * height_factor_p;
+	internalBoxTopHeightZMm = height_mm - height + spacing_mm;
+
+	translate([internalBoxWidthXMm+50,0,0])
+		build_rugged_box(internalBoxWidthXMm, internalboxLengthYMm, internalBoxTopHeightZMm, internalboxBottomHeightZMm);
+
 }
 
 
@@ -95,11 +96,15 @@ module battery_box_coin(height, width, depth, diameter_mm, spacing_mm, height_mm
 	translate([off, off/2.5, 0]) {
 		cube([width, depth, height]);
 	}
-	echo("Box Dimensions:");
-	echo("internalBoxWidthXMm=", width);
-	echo("internalboxLengthYMm=", depth);
-	echo("internalboxBottomHeightZMm=",  height_mm * height_factor_p);
-	echo("internalBoxTopHeightZMm=",  height_mm - height + spacing_mm);
+
+	internalBoxWidthXMm = width;
+	internalboxLengthYMm = depth;
+	internalboxBottomHeightZMm = height_mm * height_factor_p;
+	internalBoxTopHeightZMm = height_mm - height + spacing_mm;
+
+	translate([internalBoxWidthXMm+50,0,0])
+		build_rugged_box(internalBoxWidthXMm, internalboxLengthYMm, internalBoxTopHeightZMm, internalboxBottomHeightZMm);
+
 }
 
 
