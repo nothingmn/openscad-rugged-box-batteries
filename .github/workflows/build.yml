@@ -12,7 +12,6 @@ jobs:
           sudo apt-get install openscad meshlab admesh -y
           openscad --version
           admesh --version
-          chmod 0700 /run/user/1000
           meshlabserver | grep version
       - name: Batch Convert and upload
         run: |        
