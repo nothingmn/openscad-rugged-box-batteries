@@ -9,7 +9,7 @@ jobs:
       - name: Setup - Install tooling
         run: |
           sudo apt-get update
-          sudo apt-get install openscad meshlab admesh -y
+          sudo apt-get install openscad meshlab admesh xvfb -y
           openscad --version
           admesh --version
           meshlabserver | grep version
