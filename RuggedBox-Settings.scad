@@ -69,7 +69,7 @@ polyLvl =
 boxWallWidthMm = 3.0; // [1:0.1:10]
 // TODO: Add contrraint for this
 // The chamfer radius of the boxes corners.  (NOTE1: the floor/top radius is slightly differentthan the sides to eliminate the need for supports. NOTE2: If you want square inside corners, the boxWallWidthMm must be >= the boxChamferRadiusMm.)
-boxChamferRadiusMm = 4; // .1
+boxChamferRadiusMm = 0; // .1  //BATTERY NOTE: set this to 0, so its squared off inside.
 
 // The type of seal for the case. 1 = Circular Non-Gasket (less water resistant), 2 = Gasket type seal (more water resistant)
 boxSealType = 1; // [1:NonGasket,2:Gasket]
