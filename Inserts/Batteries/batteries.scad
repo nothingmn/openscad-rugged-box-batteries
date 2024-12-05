@@ -1,0 +1,112 @@
+include <18650.scad>
+include <AA.scad>
+include <AAA.scad>
+include <D.scad>
+include <C.scad>
+include <CR123A.scad>
+include <18350.scad>
+include <CR2.scad>
+include <CR2032.scad>
+
+
+module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm) {
+	spacing =  (diameter_mm + spacing_mm);
+	height = height_mm * height_factor_p;
+	width =  (countX * spacing ) + insertTolerance + spacing_mm*2;
+	depth =  (countY * spacing ) + insertTolerance + spacing_mm*2;
+
+	translate([width+10, -5, 0]) {
+		difference() {
+			battery_box(height, width, depth, diameter_mm, spacing_mm, height_mm, height_factor_p);
+			if(countY > 0) {
+				for(y = [1:countY]) {
+					translate([spacing / spacing_mm, spacing * y, spacing_mm]) {
+						for(x = [1:countX]) {
+							translate([ spacing * x, spacing / spacing_mm, spacing_mm]) {
+								battery_single(height_mm, diameter_mm);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+module battery_single(height_mm, diameter_mm) {
+	color("Blue") {
+		cylinder(h=height_mm, d=diameter_mm);
+	}
+}
+
+module battery_box(height, width, depth, diameter_mm, spacing_mm, height_mm, height_factor_p) {
+	
+	off = diameter_mm - spacing_mm;
+	translate([off, off, 0]) {
+		cube([width, depth, height]);
+	}
+	echo("Box Dimensions:");
+	echo("internalBoxWidthXMm=", width);
+	echo("internalboxLengthYMm=", depth);
+	echo("internalboxBottomHeightZMm=",  height_mm * height_factor_p);
+	echo("internalBoxTopHeightZMm=",  height_mm - height + spacing_mm);
+}
+
+
+/*
+COIN CELLS
+*/
+
+
+module battery_insert_coin(countX, countY, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm) {
+
+	//the big difference is the cut outs need to be rotated by 90d, and they are closer together
+
+	h = height_mm;  //this will be the super thin coin height
+	d = diameter_mm;  //these are very rounded
+
+	spacing =  (d + spacing_mm);
+	height = h * height_factor_p;
+	width =  (countX * spacing ) + insertTolerance + spacing_mm*2;
+	depth =  (countY * spacing/2.15 ) + insertTolerance + spacing_mm;
+	
+	translate([width+10, -5, 0]) {
+		difference() {
+			battery_box_coin(height, width, depth, d, spacing_mm, h, height_factor_p);
+			if(countY > 0) {
+				for(y = [1:countY]) {
+					translate([spacing / spacing_mm, spacing * y / 2.5, spacing_mm]) {
+						for(x = [1:countX]) {
+							translate([ spacing * x, spacing / spacing_mm, spacing_mm]) {
+								battery_single_coin(h, d);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+module battery_box_coin(height, width, depth, diameter_mm, spacing_mm, height_mm, height_factor_p) {
+	
+	off = diameter_mm - spacing_mm;
+	translate([off, off/2.5, 0]) {
+		cube([width, depth, height]);
+	}
+	echo("Box Dimensions:");
+	echo("internalBoxWidthXMm=", width);
+	echo("internalboxLengthYMm=", depth);
+	echo("internalboxBottomHeightZMm=",  height_mm * height_factor_p);
+	echo("internalBoxTopHeightZMm=",  height_mm - height + spacing_mm);
+}
+
+
+module battery_single_coin(height_mm, diameter_mm) {
+	color("Blue") {
+		rotate([90,0,0]) {
+			cylinder(h=height_mm, d=diameter_mm);
+		}
+	}
+}
