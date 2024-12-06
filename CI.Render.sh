@@ -135,13 +135,13 @@ main() {
     else
         case "$battery_type" in
             "18650")
-                generate_and_render "18650" 2 2 3 3
+                generate_and_render "18650" 2 2 5 5
                 ;;
             "AA")
-                generate_and_render "AA" 2 2 5 5
+                generate_and_render "AA" 2 2 10 10
                 ;;
             "AAA")
-                generate_and_render "AAA" 2 2 5 5
+                generate_and_render "AAA" 2 2 10 10
                 ;;
             "D")
                 generate_and_render "D" 2 2 5 5
@@ -150,7 +150,7 @@ main() {
                 generate_and_render "C" 2 2 5 5
                 ;;
             "CR132A")
-                generate_and_render "CR132A" 5 5 6 6
+                generate_and_render "CR132A" 5 5 10 10
                 ;;
             "CR2")
                 generate_and_render "CR2" 5 5 10 10
