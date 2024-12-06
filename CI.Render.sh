@@ -94,12 +94,12 @@ generate_and_render() {
 # Call the function for each battery type with its respective range
 generate_and_render "18650" 2 2 3 3
 generate_and_render "AA" 3 3 4 4
-generate_and_render "AAA" 5 5 6 6
-generate_and_render "D" 2 2 3 3
-generate_and_render "C" 2 2 3 3
-generate_and_render "CR132A" 5 5 6 6
-generate_and_render "CR2" 5 5 6 6
-generate_and_render "CR2032" 5 5 6 6
+# generate_and_render "AAA" 5 5 6 6
+# generate_and_render "D" 2 2 3 3
+# generate_and_render "C" 2 2 3 3
+# generate_and_render "CR132A" 5 5 6 6
+# generate_and_render "CR2" 5 5 6 6
+# generate_and_render "CR2032" 5 5 6 6
 #generate_and_render "9v" 2 2 3 3
 
 finishedTS=$(date +"%Y-%m-%d-%I-%M-%S")
