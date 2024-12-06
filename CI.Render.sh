@@ -2,6 +2,10 @@
 tag=$(date +"%Y-%m-%d-%I-%M")
 release_name="CIRelease-$tag"
 
+ls -la
+ls -la profiles
+
+
 render_scad_file() {
     local scad_file=$1
     local output_dir=$2

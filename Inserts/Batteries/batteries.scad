@@ -11,14 +11,14 @@ include <CR2032.scad>
 module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm) {
 	spacing =  (diameter_mm + spacing_mm);
 	height = height_mm * height_factor_p;
-	width =  (countX * spacing ) + insertTolerance + spacing_mm*2;
-	depth =  (countY * spacing ) + insertTolerance + spacing_mm*2;
+	width =  (countX * spacing ) + insertTolerance + spacing_mm*3;
+	depth =  (countY * spacing ) + insertTolerance + spacing_mm*3;
 
 	difference() {
-		battery_box(height, width, depth, diameter_mm, spacing_mm, height_mm, height_factor_p);
+		battery_box(height+spacing_mm/2, width+spacing_mm/2, depth+spacing_mm/3, diameter_mm, spacing_mm, height_mm, height_factor_p);
 		if(countY > 0) {
 			for(y = [0:countY-1]) {
-				translate([spacing / spacing_mm + 7.5, spacing * y - 2, spacing_mm]) {
+				translate([spacing / spacing_mm + 8, spacing * y - 2, spacing_mm]) {
 					for(x = [0:countX-1]) {
 						translate([ spacing * x, spacing / spacing_mm, spacing_mm]) {
 							battery_single(height_mm, diameter_mm);
@@ -43,12 +43,13 @@ module battery_box(height, width, depth, diameter_mm, spacing_mm, height_mm, hei
 	internalboxBottomHeightZMm = height_mm * height_factor_p;
 	internalBoxTopHeightZMm = height_mm - height + spacing_mm;
 	union() {
-		translate([2, -7, 1]) {
+		//translate([2 + (battery_count_x * .5), -7 + (battery_count_y * .5), 1]) {
+		translate([2 + (battery_count_x * .25), -7 + (battery_count_y * -.7), 1]) {
 			color("Red")
 				cube([width, depth, height]);
 		}
 
-		build_rugged_box(internalBoxWidthXMm, internalboxLengthYMm, internalBoxTopHeightZMm, internalboxBottomHeightZMm);
+		build_rugged_box(internalBoxWidthXMm-spacing_mm, internalboxLengthYMm-spacing_mm, internalBoxTopHeightZMm, internalboxBottomHeightZMm);
 	}
 }
 
