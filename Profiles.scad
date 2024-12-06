@@ -1,11 +1,3 @@
-// 1 = Extra Low Poly, 2 = Low Poly, 3 = Curved 
-BoxPolygonStyle = 3; // [1:ExtraLowPoly, 2:LowPoly, 3:Curved]
-generateBoxBottom = true;
-generateBoxTop = true;
-generateLatches = true;
-
-
-
 // *************************
 // **** Battery Inserts ****
 // *************************
@@ -44,5 +36,4 @@ if(generateCR2032)  {
 // *****************************
 
 include <Inserts/Batteries/batteries.scad>
-include <RuggedBox-Settings.scad>
-
+include <Builder.scad>;

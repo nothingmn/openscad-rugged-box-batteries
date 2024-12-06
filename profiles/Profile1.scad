@@ -1,10 +1,24 @@
+include <../Profiles.scad>;
+
 $fn=360;
-
-include <../BoxBattery.scad>;
-
+generate18650 = true;
+generateAA = false;
+generateAAA = false;
+generateD = false;
+generateC = false;
+generateCR132A = false;
+generate18350 = false;
+generateCR2 = false;
+generateCR2032 = false;
+generate9v = false;
 battery_count_x = 2;
 battery_count_y = 2;
-battery_18650(battery_count_x, battery_count_y);
+// 1 = Extra Low Poly, 2 = Low Poly, 3 = Curved 
+BoxPolygonStyle = 3; // [1:ExtraLowPoly, 2:LowPoly, 3:Curved]
+generateBoxBottom = true;
+generateBoxTop = true;
+generateLatches = true;
+
 importDefautSettings = false;
 
 //Source: https://www.printables.com/model/1073708-super-customizable-rugged-box-in-openscad
