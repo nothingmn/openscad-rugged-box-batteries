@@ -14,16 +14,14 @@ module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, d
 	width =  (countX * spacing ) + insertTolerance + spacing_mm*2;
 	depth =  (countY * spacing ) + insertTolerance + spacing_mm*2;
 
-	translate([width+10, -5, 0]) {
-		difference() {
-			battery_box(height, width, depth, diameter_mm, spacing_mm, height_mm, height_factor_p);
-			if(countY > 0) {
-				for(y = [1:countY]) {
-					translate([spacing / spacing_mm, spacing * y, spacing_mm]) {
-						for(x = [1:countX]) {
-							translate([ spacing * x, spacing / spacing_mm, spacing_mm]) {
-								battery_single(height_mm, diameter_mm);
-							}
+	difference() {
+		battery_box(height, width, depth, diameter_mm, spacing_mm, height_mm, height_factor_p);
+		if(countY > 0) {
+			for(y = [0:countY-1]) {
+				translate([spacing / spacing_mm + 7.5, spacing * y - 2, spacing_mm]) {
+					for(x = [0:countX-1]) {
+						translate([ spacing * x, spacing / spacing_mm, spacing_mm]) {
+							battery_single(height_mm, diameter_mm);
 						}
 					}
 				}
@@ -40,18 +38,18 @@ module battery_single(height_mm, diameter_mm) {
 }
 
 module battery_box(height, width, depth, diameter_mm, spacing_mm, height_mm, height_factor_p) {
-	off = diameter_mm - spacing_mm;
-	translate([off, off, 0]) {
-		cube([width, depth, height]);
-	}
 	internalBoxWidthXMm = width;
 	internalboxLengthYMm = depth;
 	internalboxBottomHeightZMm = height_mm * height_factor_p;
 	internalBoxTopHeightZMm = height_mm - height + spacing_mm;
+	union() {
+		translate([2, -7, 1]) {
+			color("Red")
+				cube([width, depth, height]);
+		}
 
-	translate([internalBoxWidthXMm+50,0,0])
 		build_rugged_box(internalBoxWidthXMm, internalboxLengthYMm, internalBoxTopHeightZMm, internalboxBottomHeightZMm);
-
+	}
 }
 
 
