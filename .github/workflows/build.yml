@@ -1,5 +1,6 @@
 name: Rugged Box Auto Build
 on: [push]
+
 jobs:
   Build-STLs:
     runs-on: ubuntu-latest
@@ -19,15 +20,8 @@ jobs:
           chmod +x CI.Render.sh
           ./CI.Render.sh
 
-      - name: Archive Rendered Files
-        run: |
-          sudo apt-get install -y p7zip-full
-          archive_name=$(date +"%Y-%m-%d_%H-%M-%S").7z
-          ls ./render/ -laR
-          7z a -t7z -mx=9 $archive_name ./render/
-
-      - name: Upload Artifact
+      - name: Upload Rendered Files
         uses: actions/upload-artifact@v3
         with:
           name: rendered-files
-          path: "*.7z"
+          path: ./render/

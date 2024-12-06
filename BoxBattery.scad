@@ -44,5 +44,10 @@ if(generateCR2032)  {
 // *****************************
 
 include <Inserts/Batteries/batteries.scad>
-include <RuggedBox-Settings.scad>
+
+if(importDefautSettings) {
+    include <RuggedBox-Settings.scad>
+} else {
+    include <Builder.scad>;
+}
 
