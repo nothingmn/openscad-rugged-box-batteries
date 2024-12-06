@@ -12,7 +12,7 @@ generateCR2 = false;
 generateCR2032 = false;
 generate9v = false;
 battery_count_x = 2;
-battery_count_y = 2;
+battery_count_y = 1;
 // 1 = Extra Low Poly, 2 = Low Poly, 3 = Curved 
 BoxPolygonStyle = 3; // [1:ExtraLowPoly, 2:LowPoly, 3:Curved]
 generateBoxBottom = true;
@@ -45,7 +45,7 @@ viewBoxClosed = false;
 // generateLatches = false;
 
 // Should the gasket be generated.  NOTE: The gasket will still only be generated if the boxSealType is = 1 (Gasket)
-generateGasket = true;
+generateGasket = false;
 // Use this option to generate a test gasket and casket insert.  This is so you can do a small print to test your tolerances before printing a full box.  You will need to separate/split the in the slicer and print them one at a time.  This "sample case rim(where the gasket will be inserted)" in your filament of choice, and the gasket itself in TPU.
 generateGasketTestObjects = false;
 // Should the feet be generated.  This has NO effect on if the feet cutouts are added to the box top and bottom.  Those settings are below...  This just determines if the feet themselves get generated.
@@ -72,21 +72,6 @@ polyLvl =
 // *********************************
 // **** Main Box Settings **** 
 // *********************************
-// // The width(X) of the inside box wall in MM
-// internalBoxWidthXMm = 100; // .1
-// // The length(Y) of the inside box wall in MM
-// internalboxLengthYMm = 60; // .1
-// // The internal height on the box top
-// internalBoxTopHeightZMm = 10; // .1
-// // The internal height on the box bottom
-// internalboxBottomHeightZMm = 20; // .1
-
-// internalBoxWidthXMm = 133.6;
-// internalboxLengthYMm = 133.6;
-// internalboxBottomHeightZMm = 59.36;
-// internalBoxTopHeightZMm = 17.34;
-
-
 // The width on the box wall and floor.  (NOTE: If you want square inside corners, the boxWallWidthMm must be > the  boxChamferRadiusMm.)
 boxWallWidthMm = 3.0; // [1:0.1:10]
 // TODO: Add contrraint for this
@@ -117,9 +102,9 @@ numSideSupportRibs = 2; // 1
 // The offset from the center for the side ribs (moves the ribs away from the center)
 ribCenterOffsetMm = 5; // 1
 // The thickness of the side ribs, you probably want this to match the rimWidthMm.  This is the thickness of the rib from the box wall.
-supportRibThickness = 2; // 1
+supportRibThickness = 1; // 1
 // The width of the side rib along the wall
-supportRibWidth = 4; // 1
+supportRibWidth = 2; // 1
 
 // The tolerance/separation between the top and bottom box sections
 openingTolerance = 0.1; // .05
@@ -170,7 +155,7 @@ hingeToleranceMm = 0.2; // .05
 // ************************
 
 // The number of latches to generate
-numberOfLatches = 2;
+numberOfLatches = 1;
 // AKA: Latch Screw Length. The total width of the latch.  This is the length of the screws needed to assemble the latch.
 latchSupportTotalWidth = 25;
 // The number in MM you want to move each hinge away from center.  If there is a middle hinge, that one won't move. NOTE: If you make this value too big, your hinge will no longer be connected to the box :-/

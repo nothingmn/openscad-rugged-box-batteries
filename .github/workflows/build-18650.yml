@@ -1,4 +1,4 @@
-name: Rugged Box Auto Build
+name: Rugged Box Auto Build 18650
 on: [push]
 
 jobs:
@@ -18,10 +18,10 @@ jobs:
       - name: Batch Convert
         run: |
           chmod +x CI.Render.sh
-          ./CI.Render.sh
+          ./CI.Render.sh 18650
 
       - name: Upload Rendered Files
         uses: actions/upload-artifact@v3
         with:
-          name: rendered-files
+          name: rendered-files-$(date +"%Y-%m-%d_%H-%M-%S")-${{ github.sha }}
           path: ./render/
