@@ -9,6 +9,6 @@ generate18350 = false;
 generateCR2 = false;
 generateCR2032 = false;
 generate9v = false;
-battery_count_x = 2;
+battery_count_x = 3;
 battery_count_y = 3;
 include <BoxBattery.scad>;
