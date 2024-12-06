@@ -23,5 +23,5 @@ jobs:
       - name: Upload Rendered Files
         uses: actions/upload-artifact@v3
         with:
-          name: rendered-files-$(date +"%Y-%m-%d_%H-%M-%S")-${{ github.sha }}
+          name: C-$(date +"%Y-%m-%d_%H-%M-%S")-${{ github.sha }}
           path: ./render/
