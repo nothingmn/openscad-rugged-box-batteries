@@ -1,6 +1,7 @@
 #!/bin/bash
 
 tag=$(date +"%Y-%m-%d-%I-%M")
+release_name="CIRelease-$tag"
 echo "Timestamp: $tag"
 renderFile="CI.Render.scad"
 
@@ -87,7 +88,6 @@ generate_and_render "18650" 2 2 3 3
 finishedTS=$(date +"%Y-%m-%d-%I-%M-%S")
 echo "Rendering complete!"
 ls
-
 
 echo "Start Timestamp:    $tag"
 echo "Finished Timestamp: $finishedTS"

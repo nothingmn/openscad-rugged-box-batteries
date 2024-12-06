@@ -1,4 +1,4 @@
-name: 3d Creations Build
+name: Rugged Box Auto Build
 on: [push]
 jobs:
   Build-STLs:
@@ -6,56 +6,28 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
+
       - name: Setup - Install tooling
         run: |
           sudo apt-get update
-          sudo apt-get install openscad admesh -y
+          sudo apt-get install -y openscad admesh
           openscad --version
           admesh --version
-      - name: Batch Convert and upload
-        run: |        
+
+      - name: Batch Convert
+        run: |
           chmod +x CI.Render.sh
           ./CI.Render.sh
 
-      - uses: edgarrc/action-7z@v1.0.4
-        with:
-          args: 7z a -t7z -mx=9 ${{ env.release_name }}.7z ./render/
+      - name: Archive Rendered Files
+        run: |
+          sudo apt-get install -y p7zip-full
+          archive_name=$(date +"%Y-%m-%d_%H-%M-%S").7z
+          ls ./render/ -laR
+          7z a -t7z -mx=9 $archive_name ./render/
 
-      #https://github.com/marketplace/actions/publish-release
-      - name: Create Draft Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
         with:
-          tag_name:  ${{ env.tag }}
-          release_name: ${{ env.release_name }}
-          draft: true
-          prerelease: true
-          
-      - name: Upload zip release asset
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: "${{ env.release_name }}.zip"
-          asset_name: "${{ env.release_name }}.zip"
-          asset_content_type: application/zip
-
-      # - name: Upload STL and GCODE files
-      #   uses: svenstaro/upload-release-action@v2
-      #   with:
-      #     repo_token: ${{ secrets.GITHUB_TOKEN }}
-      #     file: render/*
-      #     tag: ${{ env.tag }}
-      #     overwrite: true
-      #     file_glob: true
-      # - name: Publish release
-      #   uses: eregon/publish-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     release_id: ${{ steps.create_release.outputs.id }}
-
-          
+          name: rendered-files
+          path: *.7z
