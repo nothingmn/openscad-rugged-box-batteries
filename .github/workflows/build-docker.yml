@@ -53,3 +53,5 @@ jobs:
           - Commit Hash Tag: `robchartier/magic-box:${{ env.GIT_SHORT_HASH }}`
         draft: false
         prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
