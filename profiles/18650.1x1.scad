@@ -15,9 +15,6 @@ battery_count_x = 1;
 battery_count_y = 1;
 // 1 = Extra Low Poly, 2 = Low Poly, 3 = Curved 
 BoxPolygonStyle = 3; // [1:ExtraLowPoly, 2:LowPoly, 3:Curved]
-generateBoxBottom = true;
-generateBoxTop = true;
-generateLatches = true;
 
 importDefautSettings = false;
 
@@ -37,12 +34,12 @@ viewBoxClosed = false;
 // *****************************
 // These settings indicate what components of the box you want to generate.
 
-// // Should the bottom of the main box be generated
-// generateBoxBottom = false;
-// // Should the top of the main box be generated
-// generateBoxTop = false;
-// // Should the latches be generated
-// generateLatches = false;
+// Should the bottom of the main box be generated
+generateBoxBottom = true;
+// Should the top of the main box be generated
+generateBoxTop = true;
+// Should the latches be generated
+generateLatches = true;
 
 // Should the gasket be generated.  NOTE: The gasket will still only be generated if the boxSealType is = 1 (Gasket)
 generateGasket = false;
@@ -179,7 +176,7 @@ latchOpenerLengthMultiplier = 1.4; //[.5:.1:3]
 latchOpenerAngle = 10; //[0:1:45]
 
 // Min: 10, Max: 50. The shallower the angle the Harder it will be to close, at 10 you probably won't be able to bend the latch enough to close it, as you approach 50, it may not hold very well.
-latchClipCutoutAngle = 25; //[10:1:50]
+latchClipCutoutAngle = 35; //[10:1:50]
 
 
 /*[Box Full Fill Insert Settings]*/

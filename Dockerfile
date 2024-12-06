@@ -10,10 +10,12 @@ COPY . .
 # Update the package list and install required packages
 RUN apt-get update && \
     apt-get install -y openscad admesh && \
-    rm -rf /var/lib/apt/lists/*
-
-# Make the shell script executable
-RUN chmod +x CI.Render.sh
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf .git && \
+    rm -rf .gitignore && \
+    rm -rf .github && \
+    rm -rf *.md && \
+    chmod +x CI.Render.sh
 
 # Expose the "render" folder for output
 VOLUME /render

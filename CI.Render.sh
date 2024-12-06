@@ -2,10 +2,6 @@
 tag=$(date +"%Y-%m-%d-%I-%M")
 release_name="CIRelease-$tag"
 
-ls -la
-ls -la profiles
-
-
 render_scad_file() {
     local scad_file=$1
     local output_dir=$2
@@ -137,6 +133,7 @@ main() {
         echo "No battery type specified. Rendering all profiles."
         render_all_profiles
     else
+        
         case "$battery_type" in
             "18650")
                 generate_and_render "18650" 2 2 5 5
@@ -166,16 +163,40 @@ main() {
                 generate_and_render "9v" 2 2 5 5
                 ;;
             *)
-                echo "Unknown battery type: $battery_type"
-                echo "Valid options are: 18650, AA, AAA, D, C, CR132A, CR2, CR2032, 9v"
-                exit 1
+                if [ -f "$battery_type" ]; then
+                    pwd
+                    echo "Processing file: $battery_type"
+                    base_name=$(basename "$battery_type" .scad)
+                    file_name=$(basename "$battery_type")
+                    echo $base_name
+                    echo $file_name
+
+                    mkdir -p render/
+                    mkdir ./in/
+                    cp $battery_type ./in/
+                    ls -laR
+                    cd ./in/
+                    render_scad_file "$file_name" "../render" 0 0 "$base_name"                                        
+                    cd ../render
+                    cp * /render
+                    pwd
+                    ls -laR
+                    ls /render -laR
+                else
+                    echo "Unknown battery type: $battery_type"
+                    echo "Valid options are: 18650, AA, AAA, D, C, CR132A, CR2, CR2032, 9v"
+                    exit 1
+                fi
                 ;;
         esac
+
+
+        
     fi
 
     finishedTS=$(date +"%Y-%m-%d-%I-%M-%S")
     echo "Rendering complete!"
-    ls
+    ls -laR .
 
     echo "Start Timestamp:    $tag"
     echo "Finished Timestamp: $finishedTS"
