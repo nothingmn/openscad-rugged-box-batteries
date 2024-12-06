@@ -164,24 +164,16 @@ main() {
                 ;;
             *)
                 if [ -f "$battery_type" ]; then
-                    pwd
                     echo "Processing file: $battery_type"
                     base_name=$(basename "$battery_type" .scad)
                     file_name=$(basename "$battery_type")
-                    echo $base_name
-                    echo $file_name
-
                     mkdir -p render/
                     mkdir ./in/
                     cp $battery_type ./in/
-                    ls -laR
                     cd ./in/
                     render_scad_file "$file_name" "../render" 0 0 "$base_name"                                        
                     cd ../render
                     cp * /render
-                    pwd
-                    ls -laR
-                    ls /render -laR
                 else
                     echo "Unknown battery type: $battery_type"
                     echo "Valid options are: 18650, AA, AAA, D, C, CR132A, CR2, CR2032, 9v"
@@ -196,8 +188,6 @@ main() {
 
     finishedTS=$(date +"%Y-%m-%d-%I-%M-%S")
     echo "Rendering complete!"
-    ls -laR .
-
     echo "Start Timestamp:    $tag"
     echo "Finished Timestamp: $finishedTS"
 }
