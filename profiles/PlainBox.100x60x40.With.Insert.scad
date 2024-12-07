@@ -1,6 +1,6 @@
-//$fn=360;
-
+//ORIGINAL:
 //Source: https://www.printables.com/model/1073708-super-customizable-rugged-box-in-openscad
+
 
 /*[View Options]*/
 // *********************************
@@ -17,22 +17,21 @@ viewBoxClosed = false;
 // These settings indicate what components of the box you want to generate.
 
 // Should the bottom of the main box be generated
-generateBoxBottom = false;
+generateBoxBottom = true;
 // Should the top of the main box be generated
-generateBoxTop = false;
+generateBoxTop = true;
 // Should the latches be generated
-generateLatches = false;
-
+generateLatches = true;
 // Should the gasket be generated.  NOTE: The gasket will still only be generated if the boxSealType is = 1 (Gasket)
 generateGasket = true;
 // Use this option to generate a test gasket and casket insert.  This is so you can do a small print to test your tolerances before printing a full box.  You will need to separate/split the in the slicer and print them one at a time.  This "sample case rim(where the gasket will be inserted)" in your filament of choice, and the gasket itself in TPU.
-generateGasketTestObjects = false;
+generateGasketTestObjects = true;
 // Should the feet be generated.  This has NO effect on if the feet cutouts are added to the box top and bottom.  Those settings are below...  This just determines if the feet themselves get generated.
 generateFeetIfSetInSettings = true;
 // For empty box bottoms (boxes with no divider/section) should we generate a blank insert for later customization.
-generateEmptyBottomBoxTPUInsert = false;
+generateEmptyBottomBoxTPUInsert = true;
 // For empty box tops (boxes with no divider/section) should we generate a blank insert for later customization.
-generateEmptyTopBoxTPUInsert = false;
+generateEmptyTopBoxTPUInsert = true;
 
 
 /*[Poly Level]*/
@@ -41,7 +40,7 @@ generateEmptyTopBoxTPUInsert = false;
 // ***************************
 
 // 1 = Extra Low Poly, 2 = Low Poly, 3 = Curved 
-BoxPolygonStyle = 1; // [1:ExtraLowPoly, 2:LowPoly, 3:Curved]
+BoxPolygonStyle = 3; // [1:ExtraLowPoly, 2:LowPoly, 3:Curved]
 
 polyLvl = 
   BoxPolygonStyle == 1 
@@ -54,20 +53,15 @@ polyLvl =
 // *********************************
 // **** Main Box Settings **** 
 // *********************************
-// // The width(X) of the inside box wall in MM
-// internalBoxWidthXMm = 100; // .1
-// // The length(Y) of the inside box wall in MM
-// internalboxLengthYMm = 60; // .1
-// // The internal height on the box top
-// internalBoxTopHeightZMm = 10; // .1
-// // The internal height on the box bottom
-// internalboxBottomHeightZMm = 20; // .1
 
-internalBoxWidthXMm = 133.6;
-internalboxLengthYMm = 133.6;
-internalboxBottomHeightZMm = 59.36;
-internalBoxTopHeightZMm = 17.34;
-
+// The width(X) of the inside box wall in MM
+internalBoxWidthXMm = 100; // .1
+// The length(Y) of the inside box wall in MM
+internalboxLengthYMm = 60; // .1
+// The internal height on the box top
+internalBoxTopHeightZMm = 40; // .1
+// The internal height on the box bottom
+internalboxBottomHeightZMm = 10; // .1
 
 // The width on the box wall and floor.  (NOTE: If you want square inside corners, the boxWallWidthMm must be > the  boxChamferRadiusMm.)
 boxWallWidthMm = 3.0; // [1:0.1:10]
@@ -115,11 +109,11 @@ openingTolerance = 0.1; // .05
 // The number of horixontal sections (the number of dividers = countainerWidthXSections - 1)
 countainerWidthXSections = 1; //[1:20]
 // This is the number of horixontal dividers to skip, this will effectively make a larger section followed by smaller ones
-numCountainerWidthXSectionsToSkip = 0; // 1
+numCountainerWidthXSectionsToSkip = 1; // 1
 // The number of virtical sections (the number of dividers = boxLengthYSections - 1)
 boxLengthYSections = 1; // [1:20]
 // This is the number of virtical dividers to skip, this will effectively make a larger section followed by smaller ones
-numBoxLengthYSectionsToSkip = 0; // 1
+numBoxLengthYSectionsToSkip = 1; // 1
 // The width of the divider walls
 boxSectionSeparatorWidth = 1.2; // .1
 
@@ -193,9 +187,9 @@ insertTolerance = 0.1; // .05
 // ***********************
 // **** Feet Settings **** 
 // ***********************
-
+ 
 // Should feet be generated and the feet connections be cutout from the containet top and bottom.  (NOTE: this will require some glue... sorry, no tome to create a snap-in connector)
-isFeetAdded = false;
+isFeetAdded = true;
 // The width of the feet
 feetwidthMm = 4; // 1
 // the length of the feet
@@ -226,64 +220,10 @@ boxTopHeightZMm = internalBoxTopHeightZMm + boxWallWidthMm;
 // The height of the box bottom
 boxBottomHeightZMm = internalboxBottomHeightZMm + boxWallWidthMm;
 
-boxTopAndBottomSpacing = 10;
-
 // WALL Testing
 //translate([0,-50,0]) rotate([90,0,0]) linear_extrude(6) Wall2D(boxWallWidthMm, 0, boxBottomHeightZMm, true, true);
-include <Builder.scad>;
+spacing_mm = 0;
 
+include <../Builder.scad>;
 
-// *************************
-// **** Battery Inserts ****
-// *************************
-generate18650 = true;
-generateAA = true;
-generateAAA = true;
-generateD = true;
-generateC = true;
-generateCR132A = true;
-generate18350 = true;
-generateCR2 = true;
-
-include <Inserts/Batteries/batteries.scad>
-
-battery_count_x = 4;
-battery_count_y = 4;
-
-if(generate18650)  {
-   battery_18650(battery_count_x, battery_count_y);
-}
-
-if(generateAA)  {
-  translate([180,0,0])
-    battery_AA(battery_count_x, battery_count_y);
-}
-if(generateAAA)  {
-  translate([300,0,0])
-    battery_AAA(battery_count_x, battery_count_y);
-}
-if(generateD)  {
-  translate([300,0,0])
-    battery_D(battery_count_x, battery_count_y);
-}
-if(generateC)  {
-  translate([500,0,0])
-    battery_C(battery_count_x, battery_count_y);
-}
-if(generateCR132A)  {
-  translate([700,0,0])
-    battery_CR123A(battery_count_x, battery_count_y);
-}
-if(generate18350)  {
-  translate([750,0,0])
-    battery_18350(battery_count_x, battery_count_y);
-}
-if(generateCR2)  {
-  translate([750,0,0])
-    battery_CR2(battery_count_x, battery_count_y);
-}
-
-
-// *****************************
-// **** END Battery Inserts ****
-// *****************************
+build_rugged_box(internalBoxWidthXMm-spacing_mm, internalboxLengthYMm-spacing_mm, internalBoxTopHeightZMm, internalboxBottomHeightZMm);
