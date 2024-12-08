@@ -63,7 +63,7 @@ generate_and_render() {
     local max_y=$5
 
     # Array of all battery types
-    local battery_types=("18650" "AA" "AAA" "D" "C" "CR132A" "18350" "CR2" "CR2032" "9v")
+    local battery_types=("18650" "AA" "AAA" "D" "C" "CR132A" "18350" "CR2" "CR2032" "9v", "22lr","7mm","12G3","12G234","16G234","20G3","20G234","28G234","65Creedmor","223","243","270","300","300WinMag","308","3006","3030","4103","410234")
 
     for ((x = start_x; x <= max_x; x++)); do
         for ((y = start_y; y <= max_y; y++)); do
@@ -161,6 +161,63 @@ main() {
                 ;;
             "9v")
                 generate_and_render "9v" 2 2 5 5
+                ;;
+            "22lr")
+                generate_and_render "22lr" 5 5 10 10
+                ;;
+            "7mm")
+                generate_and_render "7mm" 5 5 10 10
+                ;;
+            "12G3")
+                generate_and_render "12G3" 5 5 10 10
+                ;;
+            "12G234")
+                generate_and_render "12G234" 5 5 10 10
+                ;;
+            "16G234")
+                generate_and_render "16G234" 5 5 10 10
+                ;;
+            "20G3")
+                generate_and_render "20G3" 5 5 10 10
+                ;;
+            "20G234")
+                generate_and_render "20G234" 5 5 10 10
+                ;;
+            "28G234")
+                generate_and_render "28G234" 5 5 10 10
+                ;;
+            "65Creedmor")
+                generate_and_render "65Creedmor" 5 5 10 10
+                ;;
+            "223")
+                generate_and_render "223" 5 5 10 10
+                ;;
+            "243")
+                generate_and_render "243" 5 5 10 10
+                ;;
+            "270")
+                generate_and_render "270" 5 5 10 10
+                ;;
+            "300")
+                generate_and_render "300" 5 5 10 10
+                ;;
+            "300WinMag")
+                generate_and_render "300WinMag" 5 5 10 10
+                ;;
+            "308")
+                generate_and_render "308" 5 5 10 10
+                ;;
+            "3006")
+                generate_and_render "3006" 5 5 10 10
+                ;;
+            "3030")
+                generate_and_render "3030" 5 5 10 10
+                ;;
+            "4103")
+                generate_and_render "4103" 5 5 10 10
+                ;;
+            "410234")
+                generate_and_render "410234" 5 5 10 10
                 ;;
             *)
                 if [ -f "$battery_type" ]; then

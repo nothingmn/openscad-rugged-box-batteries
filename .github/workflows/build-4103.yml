@@ -1,0 +1,30 @@
+name: Rugged Box Auto Build 4103
+on: [push]
+
+jobs:
+  Build-STLs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Setup - Install tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openscad admesh
+          openscad --version
+          admesh --version
+
+      - name: Batch Convert
+        run: |
+          chmod +x CI.Render.sh
+          ./CI.Render.sh 4103
+
+      - name: Set Artifact Name
+        run: echo "ARTIFACT_NAME=4103-$(date +'%Y-%m-%d_%H-%M-%S')-${GITHUB_SHA}" | sed 's/[:"]/./g' >> $GITHUB_ENV
+  
+      - name: Upload Rendered Files
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ./render/

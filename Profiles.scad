@@ -28,7 +28,9 @@ if(generateCR2)  {
 }
 if(generateCR2032)  {
     battery_CR2032(battery_count_x, battery_count_y, 50);
-
+}
+if(generate22lr)  {
+    battery_22lr(battery_count_x, battery_count_y);
 }
 
 // *****************************

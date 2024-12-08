@@ -7,20 +7,39 @@ include <CR123A.scad>
 include <18350.scad>
 include <CR2.scad>
 include <CR2032.scad>
+include <22lr.scad>
+include <7mm.scad>
+include <12G3.scad>
+include <12G234.scad>
+include <16G234.scad>
+include <20G3.scad>
+include <20G234.scad>
+include <28G234.scad>
+include <65Creedmor.scad>
+include <223.scad>
+include <243.scad>
+include <270.scad>
+include <300.scad>
+include <300WinMag.scad>
+include <308.scad>
+include <3006.scad>
+include <3030.scad>
+include <4103.scad>
+include <410234.scad>
 
 module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm) {
 	spacing =  (diameter_mm + spacing_mm);
 	height = height_mm * height_factor_p;
-	width =  (countX * spacing ) + insertTolerance + spacing_mm*3;
-	depth =  (countY * spacing ) + insertTolerance + spacing_mm*3;
+	width =  (countX * spacing ) + spacing_mm*2;
+	depth =  (countY * spacing ) + spacing_mm*2;
 
 	difference() {
-		battery_box(height+spacing_mm/2, width+spacing_mm/2, depth+spacing_mm/3, diameter_mm, spacing_mm, height_mm, height_factor_p);
+		battery_box(height, width, depth, diameter_mm, spacing_mm, height_mm, height_factor_p);
 		if(countY > 0) {
 			for(y = [0:countY-1]) {
-				translate([spacing / spacing_mm + 8, spacing * y - 2, spacing_mm]) {
+				translate([spacing - 2, spacing * y - 2, spacing_mm]) {
 					for(x = [0:countX-1]) {
-						translate([ spacing * x, spacing / spacing_mm, spacing_mm]) {
+						translate([ (spacing * x) + 1, spacing / spacing_mm / 2, spacing_mm]) {
 							battery_single(height_mm, diameter_mm);
 						}
 					}
@@ -32,9 +51,7 @@ module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, d
 
 
 module battery_single(height_mm, diameter_mm) {
-	color("Blue") {
 		cylinder(h=height_mm, d=diameter_mm);
-	}
 }
 
 module battery_box(height, width, depth, diameter_mm, spacing_mm, height_mm, height_factor_p) {
@@ -44,9 +61,8 @@ module battery_box(height, width, depth, diameter_mm, spacing_mm, height_mm, hei
 	internalBoxTopHeightZMm = height_mm - height + spacing_mm;
 	union() {
 		//translate([2 + (battery_count_x * .5), -7 + (battery_count_y * .5), 1]) {
-		translate([2 + (battery_count_x * .25), -7 + (battery_count_y * -.7), 1]) {
-			color("Red")
-				cube([width, depth, height]);
+		translate([2 + (battery_count_x * .25), -7 + (battery_count_y * -.25), 1]) {
+			cube([width, depth, height]);
 		}
 
 		build_rugged_box(internalBoxWidthXMm-spacing_mm, internalboxLengthYMm-spacing_mm, internalBoxTopHeightZMm, internalboxBottomHeightZMm);
