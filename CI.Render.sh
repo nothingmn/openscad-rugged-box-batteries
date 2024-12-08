@@ -55,15 +55,16 @@ render_scad_file() {
     echo "Final file is $final_file"
 }
 
+
+# Array of all battery types
+local battery_types=("18650" "AA" "AAA" "D" "C" "CR132A" "18350" "CR2" "CR2032" "9v" "22lr" "7mm" "12G3" "12G234" "16G234" "20G3" "20G234" "28G234" "65Creedmor" "223" "243" "270" "300" "300WinMag" "308" "3006" "3030" "4103" "410234")
+
 generate_and_render() {
     local battery_type=$1
     local start_x=$2
     local start_y=$3
     local max_x=$4
     local max_y=$5
-
-    # Array of all battery types
-    local battery_types=("18650" "AA" "AAA" "D" "C" "CR132A" "18350" "CR2" "CR2032" "9v", "22lr","7mm","12G3","12G234","16G234","20G3","20G234","28G234","65Creedmor","223","243","270","300","300WinMag","308","3006","3030","4103","410234")
 
     for ((x = start_x; x <= max_x; x++)); do
         for ((y = start_y; y <= max_y; y++)); do
@@ -166,58 +167,58 @@ main() {
                 generate_and_render "22lr" 5 5 10 10
                 ;;
             "7mm")
-                generate_and_render "7mm" 5 5 10 10
+                generate_and_render "7mm" 4 4 10 10
                 ;;
             "12G3")
-                generate_and_render "12G3" 5 5 10 10
+                generate_and_render "12G3" 4 4 10 10
                 ;;
             "12G234")
-                generate_and_render "12G234" 5 5 10 10
+                generate_and_render "12G234" 4 4 10 10
                 ;;
             "16G234")
-                generate_and_render "16G234" 5 5 10 10
+                generate_and_render "16G234" 4 4 10 10
                 ;;
             "20G3")
-                generate_and_render "20G3" 5 5 10 10
+                generate_and_render "20G3" 4 4 10 10
                 ;;
             "20G234")
-                generate_and_render "20G234" 5 5 10 10
+                generate_and_render "20G234" 4 4 10 10
                 ;;
             "28G234")
-                generate_and_render "28G234" 5 5 10 10
+                generate_and_render "28G234" 4 4 10 10
                 ;;
             "65Creedmor")
-                generate_and_render "65Creedmor" 5 5 10 10
+                generate_and_render "65Creedmor" 4 4 10 10
                 ;;
             "223")
-                generate_and_render "223" 5 5 10 10
+                generate_and_render "223" 4 4 10 10
                 ;;
             "243")
-                generate_and_render "243" 5 5 10 10
+                generate_and_render "243" 4 4 10 10
                 ;;
             "270")
-                generate_and_render "270" 5 5 10 10
+                generate_and_render "270" 4 4 10 10
                 ;;
             "300")
-                generate_and_render "300" 5 5 10 10
+                generate_and_render "300" 4 4 10 10
                 ;;
             "300WinMag")
-                generate_and_render "300WinMag" 5 5 10 10
+                generate_and_render "300WinMag" 4 4 10 10
                 ;;
             "308")
-                generate_and_render "308" 5 5 10 10
+                generate_and_render "308" 4 4 10 10
                 ;;
             "3006")
-                generate_and_render "3006" 5 5 10 10
+                generate_and_render "3006" 4 4 10 10
                 ;;
             "3030")
-                generate_and_render "3030" 5 5 10 10
+                generate_and_render "3030" 4 4 10 10
                 ;;
             "4103")
-                generate_and_render "4103" 5 5 10 10
+                generate_and_render "4103" 4 4 10 10
                 ;;
             "410234")
-                generate_and_render "410234" 5 5 10 10
+                generate_and_render "410234" 4 4 10 10
                 ;;
             *)
                 if [ -f "$battery_type" ]; then
@@ -233,7 +234,12 @@ main() {
                     cp * /render
                 else
                     echo "Unknown battery type: $battery_type"
-                    echo "Valid options are: 18650, AA, AAA, D, C, CR132A, CR2, CR2032, 9v"
+                    echo "Valid options are:"
+                    output=""
+                    for type in "${battery_types[@]}"; do
+                        output+="$type "
+                    done
+                    echo "${output% }"               
                     exit 1
                 fi
                 ;;
