@@ -26,9 +26,12 @@ render_scad_file() {
     echo "OpenSCAD Output: $openscad_file"
     echo "Admesh Output: $admesh_file"
     echo "Final File: $final_file"
-
+    
+    cat $scad_file
+    echo "starting to render via openscad"
     # Run OpenSCAD
     time /usr/bin/openscad --autocenter --render --viewall -o "$openscad_file" --export-format asciistl "$scad_file"
+    echo "done render via openscad"
     if [ $? -eq 0 ]; then
         echo "Completed SCAD Render to $openscad_file, starting admesh"
 
@@ -83,8 +86,6 @@ generate_and_render() {
                 echo "include <BoxBattery.scad>;"
             } > $renderFile
 
-            cat $renderFile
-            
             # Create render folder if not exists
             output_dir="render/${battery_type}"
             mkdir -p "$output_dir"

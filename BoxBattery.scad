@@ -80,6 +80,10 @@ if(generate243)  {
 if(generate223)  {
     battery_223(battery_count_x, battery_count_y);
 }
+if(generate28G234)  {
+    battery_28G234(battery_count_x, battery_count_y);
+}
+
 if(generate65Creedmor)  {
     battery_65Creedmor(battery_count_x, battery_count_y);
 }
