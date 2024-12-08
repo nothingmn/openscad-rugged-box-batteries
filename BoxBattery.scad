@@ -76,7 +76,7 @@ if(generate270)  {
 }
 if(generate243)  {
     battery_243(battery_count_x, battery_count_y);
-}`
+}
 if(generate223)  {
     battery_223(battery_count_x, battery_count_y);
 }
