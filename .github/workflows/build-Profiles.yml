@@ -1,4 +1,5 @@
 name: Rugged Box Auto Build Profiles
+
 on: [push]
 
 jobs:
@@ -28,3 +29,11 @@ jobs:
         with:
           name: ${{ env.ARTIFACT_NAME }}
           path: ./render/
+
+      # Trigger the coordinator workflow
+      - name: Trigger Release Coordinator Workflow
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: aggregate-release
+          client-payload: '{"artifact_name": "${{ env.ARTIFACT_NAME }}", "commit_hash": "${{ github.sha }}"}'

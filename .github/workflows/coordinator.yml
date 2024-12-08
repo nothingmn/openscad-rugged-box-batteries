@@ -1,0 +1,45 @@
+name: Release Coordinator
+
+on:
+  repository_dispatch:
+    types:
+      - aggregate-release
+
+jobs:
+  aggregate-assets:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Use GitHub API to collect artifact metadata
+      - name: Log received artifact metadata
+        run: |
+          echo "Artifact: ${{ github.event.client_payload.artifact_name }}"
+          echo "Commit: ${{ github.event.client_payload.commit_hash }}"
+
+      # Download all available artifacts
+      - name: Download artifacts from all workflows
+        uses: actions/download-artifact@v3
+        with:
+          path: all-assets/
+
+      # Prepare artifacts for the release
+      - name: Prepare release assets
+        run: |
+          echo "Aggregating all artifacts..."
+          ls all-assets
+
+      # Create or update the release
+      - name: Create/Update Release
+        uses: actions/create-release@v1
+        with:
+          tag_name: release-${{ github.event.client_payload.commit_hash }}
+          release_name: "Aggregated Release for Commit ${{ github.event.client_payload.commit_hash }}"
+          body: |
+            This release includes assets from all workflows.
+          assets: |
+            all-assets/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

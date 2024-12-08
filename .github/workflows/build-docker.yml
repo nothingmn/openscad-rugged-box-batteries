@@ -41,17 +41,10 @@ jobs:
         docker push robchartier/magic-box:latest
         docker push robchartier/magic-box:${{ env.GIT_SHORT_HASH }}
 
-    # Create a GitHub Release with the Git hash tag
-    - name: Create GitHub Release
-      uses: actions/create-release@v1
+    # Trigger the coordinator workflow
+    - name: Trigger Release Coordinator Workflow
+      uses: peter-evans/repository-dispatch@v2
       with:
-        tag_name: ${{ env.GIT_SHORT_HASH }}
-        release_name: Docker Image Release ${{ env.GIT_SHORT_HASH }}
-        body: |
-          Docker image tagged with the Git commit hash.
-          - Latest Tag: `robchartier/magic-box:latest`
-          - Commit Hash Tag: `robchartier/magic-box:${{ env.GIT_SHORT_HASH }}`
-        draft: false
-        prerelease: false
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        event-type: aggregate-release
+        client-payload: '{"artifact_name": "docker-image-${{ env.GIT_SHORT_HASH }}", "commit_hash": "${{ github.sha }}"}'
