@@ -30,8 +30,10 @@ render_scad_file() {
     cat $scad_file
     echo "starting to render via openscad"
     # Run OpenSCAD
-    time /usr/bin/openscad --autocenter --render --viewall -o "$openscad_file" --export-format asciistl "$scad_file"
-    echo "done render via openscad"
+    # https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment
+    time /usr/bin/openscad --autocenter --render --viewall -o "$openscad_file" --export-format binstl "$scad_file"
+    file_size=$(stat --format="%s" "$openscad_file")
+    echo "Done render via openscad.  The size of the file $openscad_file is $file_size bytes."
     if [ $? -eq 0 ]; then
         echo "Completed SCAD Render to $openscad_file, starting admesh"
 
@@ -44,6 +46,15 @@ render_scad_file() {
             # Clean up and rename
             mv "$admesh_file" "$final_file"
             rm -f "$openscad_file"
+
+            final_file_size=$(stat --format="%s" "$final_file")
+            echo "Done with admesh entirely. The size of the file $final_file is $final_file_size bytes."
+
+            # Calculate the difference
+            file_size_difference=$((final_file_size - file_size))
+
+            # Echo the difference
+            echo "Admesh saved us $file_size_difference bytes."
         else
             echo "Admesh failed, keeping OpenSCAD output"
 
