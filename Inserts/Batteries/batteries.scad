@@ -28,44 +28,46 @@ include <4103.scad>
 include <410212.scad>
 
 module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm) {
-	spacing =  (diameter_mm + spacing_mm/2);
-	height = height_mm * height_factor_p;
-	width =  (countX * spacing ) + spacing_mm*2;
-	depth =  (countY * spacing ) + spacing_mm*2;
+    // Calculate dimensions
+    spacing = diameter_mm + spacing_mm;  // Space per battery
+    bottom_height = height_mm * height_factor_p; // Total box height of the bottom
+    top_height = height_mm - bottom_height; // Total box height of the bottom
+    width = spacing * countX + spacing_mm;  // Total box width
+    depth = spacing * countY + spacing_mm;  // Total box depth
 
-	difference() {
-		battery_box(height, width, depth, diameter_mm, spacing_mm, height_mm, height_factor_p);
-		if(countY > 0) {
-			for(y = [0:countY-1]) {
-				translate([spacing - 2, spacing * y - 2, spacing_mm]) {
-					for(x = [0:countX-1]) {
-						translate([ (spacing * x - 0.5) , spacing / spacing_mm / 2, spacing_mm]) {
-							battery_single(height_mm, diameter_mm);
-						}
-					}
+
+    difference() {
+        // Outer box
+        battery_box(bottom_height, top_height, width, depth, spacing_mm);
+		
+		//position us just over the box
+		translate([spacing/2 + boxWallWidthMm, spacing/2 - boxWallWidthMm*2, 0])				
+		// Battery slots
+		for (y = [0:countY-1]) {
+			for (x = [0:countX-1]) {
+				translate([x * spacing, y * spacing, spacing_mm]) {
+					battery_single(bottom_height, diameter_mm + diameter_offset);
 				}
 			}
 		}
-	}
+    }
 }
 
 
-module battery_single(height_mm, diameter_mm) {
-		cylinder(h=height_mm, d=diameter_mm);
+module battery_single(bottom_height, diameter_mm) {
+		cylinder(h=bottom_height, d=diameter_mm);
 }
 
-module battery_box(height, width, depth, diameter_mm, spacing_mm, height_mm, height_factor_p) {
+module battery_box(bottom_height, top_height, width, depth, spacing_mm) {
 	internalBoxWidthXMm = width;
 	internalboxLengthYMm = depth;
-	internalboxBottomHeightZMm = height_mm * height_factor_p;
-	internalBoxTopHeightZMm = height_mm - height + spacing_mm;
+	internalboxBottomHeightZMm = bottom_height;
+	internalBoxTopHeightZMm = top_height;
 	union() {
-		//translate([2 + (battery_count_x * .5), -7 + (battery_count_y * .5), 1]) {
+		build_rugged_box(internalBoxWidthXMm, internalboxLengthYMm, internalBoxTopHeightZMm, internalboxBottomHeightZMm);
 		translate([ (battery_count_x * .25), -7 + (battery_count_y * -.25), 1]) {
-			cube([width, depth, height]);
+			cube([width, depth, bottom_height]);
 		}
-
-		build_rugged_box(internalBoxWidthXMm-spacing_mm, internalboxLengthYMm-spacing_mm, internalBoxTopHeightZMm, internalboxBottomHeightZMm);
 	}
 }
 

@@ -70,26 +70,8 @@ generate_and_render() {
     local max_x=$4
     local max_y=$5
 
-    local numberOfHinges = 2;
-    local numberOfLatches = 2;
-
     for ((x = start_x; x <= max_x; x++)); do
         for ((y = start_y; y <= max_y; y++)); do
-            local numberOfHinges=2;
-            local numberOfLatches=2;
-            
-            # if either x or y is less than 4, its pretty small, so only do one hinge and latch.
-            if [ "$x" -le 4 ]; then
-                numberOfHinges=1
-                numberOfLatches=1
-            fi
-
-            if [ "$y" -le 4 ]; then
-                numberOfHinges=1
-                numberOfLatches=1
-            fi
-
-
             # Write the render file with proper syntax            
             {                
                 echo "\$fn=360;"
@@ -102,8 +84,12 @@ generate_and_render() {
                 done
                 echo "battery_count_x = $x;"
                 echo "battery_count_y = $y;"
-                echo "numberOfHinges = $numberOfHinges;"
-                echo "numberOfLatches = $numberOfLatches;"
+                echo "numberOfHinges = battery_count_x >= 8 ? 4 :"
+                echo "                 battery_count_x >= 6 ? 3 :"
+                echo "                 battery_count_x >= 3 ? 2 : 1;"
+                echo ""
+                echo "numberOfLatches = battery_count_x <= 6 ? 1 : 2;"
+                echo ""			                  
                 echo "include <BoxBattery.scad>;"
             } > $renderFile
 

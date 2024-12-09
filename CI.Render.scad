@@ -23,15 +23,19 @@ generate243 = false;
 generate270 = false;
 generate300 = false;
 generate300WinMag = false;
-generate308 = false;
+generate308 = false; 
 generate3006 = true;
 generate3030 = false;
 generate4103 = false;
 generate410212 = false;
 battery_count_x = 1;
 battery_count_y = 1;
-numberOfHinges = 1; // 1
-numberOfLatches = 1;
 
+numberOfHinges = battery_count_x >= 8 ? 4 :
+				 battery_count_x >= 6 ? 3 :
+                 battery_count_x >= 3 ? 2 : 1;
+
+numberOfLatches = battery_count_x <= 6 ? 1 : 2;
+				  
 
 include <BoxBattery.scad>;
