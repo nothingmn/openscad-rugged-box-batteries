@@ -28,6 +28,10 @@ generate3006 = true;
 generate3030 = false;
 generate4103 = false;
 generate410212 = false;
-battery_count_x = 4;
-battery_count_y = 4;
+battery_count_x = 1;
+battery_count_y = 1;
+numberOfHinges = 1; // 1
+numberOfLatches = 1;
+
+
 include <BoxBattery.scad>;

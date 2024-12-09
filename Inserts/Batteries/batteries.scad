@@ -28,7 +28,7 @@ include <4103.scad>
 include <410212.scad>
 
 module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm) {
-	spacing =  (diameter_mm + spacing_mm);
+	spacing =  (diameter_mm + spacing_mm/2);
 	height = height_mm * height_factor_p;
 	width =  (countX * spacing ) + spacing_mm*2;
 	depth =  (countY * spacing ) + spacing_mm*2;
@@ -39,7 +39,7 @@ module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, d
 			for(y = [0:countY-1]) {
 				translate([spacing - 2, spacing * y - 2, spacing_mm]) {
 					for(x = [0:countX-1]) {
-						translate([ (spacing * x) + 1, spacing / spacing_mm / 2, spacing_mm]) {
+						translate([ (spacing * x) , spacing / spacing_mm / 2, spacing_mm]) {
 							battery_single(height_mm, diameter_mm);
 						}
 					}
@@ -61,7 +61,7 @@ module battery_box(height, width, depth, diameter_mm, spacing_mm, height_mm, hei
 	internalBoxTopHeightZMm = height_mm - height + spacing_mm;
 	union() {
 		//translate([2 + (battery_count_x * .5), -7 + (battery_count_y * .5), 1]) {
-		translate([2 + (battery_count_x * .25), -7 + (battery_count_y * -.25), 1]) {
+		translate([ (battery_count_x * .25), -7 + (battery_count_y * -.25), 1]) {
 			cube([width, depth, height]);
 		}
 

@@ -126,7 +126,7 @@ boxSectionSeparatorWidth = 1.2; // .1
 // ************************
 
 // The number of hinges
-numberOfHinges = 2; // 1
+// numberOfHinges = 1; // 1
 // AKA: Hinge Screw Length. The full hinge width.  This is also the length of the screw you will need to assemble the case
 hingeTotalWidthMm = 25; // 1
 // The radius of the hinge pivot
@@ -148,7 +148,7 @@ hingeToleranceMm = 0.2; // .05
 // ************************
 
 // The number of latches to generate
-numberOfLatches = 2;
+// numberOfLatches = 1;
 // AKA: Latch Screw Length. The total width of the latch.  This is the length of the screws needed to assemble the latch.
 latchSupportTotalWidth = 25;
 // The number in MM you want to move each hinge away from center.  If there is a middle hinge, that one won't move. NOTE: If you make this value too big, your hinge will no longer be connected to the box :-/
