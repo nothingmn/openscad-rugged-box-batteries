@@ -5,7 +5,7 @@
 //	3.562 in (90.5 mm)
 module battery_300(num_x, num_y) {
 	diameter_offset = 0.2;  //mm, give us a little bit of room around the item
-	spacing_mm = 2.5; 	//mm
+	spacing_mm = 1.5; 	//mm
 	height_mm = 90.5 + diameter_offset;  	//mm
 	diameter_mm = 13 + diameter_offset; //mm
 	height_factor_p = 0.80; //percent

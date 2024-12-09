@@ -35,7 +35,6 @@ module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, d
     width = spacing * countX + spacing_mm;  // Total box width
     depth = spacing * countY + spacing_mm;  // Total box depth
 
-
     difference() {
         // Outer box
         battery_box(bottom_height, top_height, width, depth, spacing_mm);
@@ -46,7 +45,7 @@ module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, d
 		for (y = [0:countY-1]) {
 			for (x = [0:countX-1]) {
 				translate([x * spacing, y * spacing, spacing_mm]) {
-					battery_single(bottom_height, diameter_mm + diameter_offset);
+					battery_single(bottom_height, diameter_mm + diameter_offset, spacing_mm);
 				}
 			}
 		}
@@ -54,8 +53,8 @@ module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, d
 }
 
 
-module battery_single(bottom_height, diameter_mm) {
-		cylinder(h=bottom_height, d=diameter_mm);
+module battery_single(bottom_height, diameter_mm, spacing_mm) {
+		cylinder(h=bottom_height+spacing_mm, d=diameter_mm);
 }
 
 module battery_box(bottom_height, top_height, width, depth, spacing_mm) {
@@ -64,9 +63,9 @@ module battery_box(bottom_height, top_height, width, depth, spacing_mm) {
 	internalboxBottomHeightZMm = bottom_height;
 	internalBoxTopHeightZMm = top_height;
 	union() {
-		build_rugged_box(internalBoxWidthXMm, internalboxLengthYMm, internalBoxTopHeightZMm, internalboxBottomHeightZMm);
+		build_rugged_box(internalBoxWidthXMm, internalboxLengthYMm, internalBoxTopHeightZMm, internalboxBottomHeightZMm+spacing_mm);
 		translate([ (battery_count_x * .25), -7 + (battery_count_y * -.25), 1]) {
-			cube([width+spacing_mm, depth+spacing_mm, bottom_height]);
+			cube([width+spacing_mm, depth+spacing_mm, bottom_height+spacing_mm]);
 		}
 	}
 }
