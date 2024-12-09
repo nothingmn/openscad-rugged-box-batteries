@@ -1,4 +1,4 @@
-name: Rugged Box Auto Build 410234
+name: Rugged Box Auto Build 410212
 on: [push]
 
 jobs:
@@ -18,10 +18,10 @@ jobs:
       - name: Batch Convert
         run: |
           chmod +x CI.Render.sh
-          ./CI.Render.sh 410234
+          ./CI.Render.sh 410212
 
       - name: Set Artifact Name
-        run: echo "ARTIFACT_NAME=410234-$(date +'%Y-%m-%d_%H-%M-%S')-${GITHUB_SHA}" | sed 's/[:"]/./g' >> $GITHUB_ENV
+        run: echo "ARTIFACT_NAME=410212-$(date +'%Y-%m-%d_%H-%M-%S')-${GITHUB_SHA}" | sed 's/[:"]/./g' >> $GITHUB_ENV
   
       - name: Upload Rendered Files
         uses: actions/upload-artifact@v3

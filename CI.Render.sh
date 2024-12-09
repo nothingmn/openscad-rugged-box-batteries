@@ -36,6 +36,7 @@ render_scad_file() {
         echo "Completed SCAD Render to $openscad_file, starting admesh"
 
         # Run Admesh
+        # https://admesh.readthedocs.io/en/latest/cli.html#examples
         time admesh --nearby --fill-holes --remove-unconnected --normal-directions --normal-values "$openscad_file" --write-binary-stl="$admesh_file"
         if [ $? -eq 0 ]; then
             echo "Completed admesh fix to $admesh_file, all done"
@@ -60,7 +61,7 @@ render_scad_file() {
 
 
 # Array of all battery types
-local battery_types=("18650" "AA" "AAA" "D" "C" "CR132A" "18350" "CR2" "CR2032" "9v" "22lr" "7mm" "12G3" "12G234" "16G234" "20G3" "20G234" "28G234" "65Creedmor" "223" "243" "270" "300" "300WinMag" "308" "3006" "3030" "4103" "410234")
+local battery_types=("18650" "AA" "AAA" "D" "C" "CR132A" "18350" "CR2" "CR2032" "9v" "22lr" "7mm" "12G3" "12G234" "16G234" "20G3" "20G234" "28G234" "65Creedmor" "223" "243" "270" "300" "300WinMag" "308" "3006" "3030" "4103" "410212")
 
 generate_and_render() {
     local battery_type=$1
@@ -220,8 +221,8 @@ main() {
             "4103")
                 generate_and_render "4103" 4 4 10 10
                 ;;
-            "410234")
-                generate_and_render "410234" 4 4 10 10
+            "410212")
+                generate_and_render "410212" 4 4 10 10
                 ;;
             *)
                 if [ -f "$battery_type" ]; then

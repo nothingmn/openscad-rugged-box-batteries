@@ -1,16 +1,17 @@
-//https://en.m.wikipedia.org/wiki/6.5mm_Creedmoor
+//https://en.m.wikipedia.org/wiki/.410_bore
 //Base diameter
-//	.4703 in (11.95 mm)
+//	.470 in (11.9 mm)
 //Overall length
-//	2.825 in (71.8 mm)
-module battery_65Creedmor(num_x, num_y) {
+//	2 in (51 mm)
+//  ⁠2+1/2⁠ in (64 mm)
+//  3 in (76 mm)
+module battery_410212(num_x, num_y) {
 	diameter_offset = 0.2;  //mm, give us a little bit of room around the item
 	spacing_mm = 2.5; 	//mm
-	height_mm = 71.8 + diameter_offset;  	//mm
-	diameter_mm = 11.95 + diameter_offset; //mm
+	height_mm = 64 + diameter_offset;  	//mm
+	diameter_mm = 11.9 + diameter_offset; //mm
 	height_factor_p = 0.80; //percent
 
 	battery_insert(num_x, num_y, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm);
 }
-
 

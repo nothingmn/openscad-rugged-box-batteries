@@ -1,3 +1,8 @@
+//https://en.m.wikipedia.org/wiki/.300_Winchester_Magnum
+//Base diameter
+//	.513 in (13.0 mm)
+//Overall length
+//	3.34 in (85 mm)
 
 module battery_300WinMag(num_x, num_y) {
 	diameter_offset = 0.2;  //mm, give us a little bit of room around the item

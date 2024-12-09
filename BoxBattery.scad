@@ -50,8 +50,8 @@ if(generateCR2032)  {
 if(generate22lr)  {
     battery_22lr(battery_count_x, battery_count_y);
 }
-if(generate410234)  {
-    battery_410234(battery_count_x, battery_count_y);
+if(generate410212)  {
+    battery_410212(battery_count_x, battery_count_y);
 }
 if(generate4103)  {
     battery_4103(battery_count_x, battery_count_y);
