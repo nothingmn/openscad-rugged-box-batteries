@@ -39,7 +39,7 @@ module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, d
 			for(y = [0:countY-1]) {
 				translate([spacing - 2, spacing * y - 2, spacing_mm]) {
 					for(x = [0:countX-1]) {
-						translate([ (spacing * x) , spacing / spacing_mm / 2, spacing_mm]) {
+						translate([ (spacing * x - 0.5) , spacing / spacing_mm / 2, spacing_mm]) {
 							battery_single(height_mm, diameter_mm);
 						}
 					}
