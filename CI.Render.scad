@@ -28,8 +28,8 @@ generate3006 = true;
 generate3030 = false;
 generate4103 = false;
 generate410212 = false;
-battery_count_x = 1;
-battery_count_y = 1;
+battery_count_x = 5;
+battery_count_y = 4;
 
 numberOfHinges = battery_count_x >= 8 ? 4 :
 				 battery_count_x >= 6 ? 3 :

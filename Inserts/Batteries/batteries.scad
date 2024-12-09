@@ -59,14 +59,14 @@ module battery_single(bottom_height, diameter_mm) {
 }
 
 module battery_box(bottom_height, top_height, width, depth, spacing_mm) {
-	internalBoxWidthXMm = width;
+	internalBoxWidthXMm = width - spacing_mm;
 	internalboxLengthYMm = depth;
 	internalboxBottomHeightZMm = bottom_height;
 	internalBoxTopHeightZMm = top_height;
 	union() {
 		build_rugged_box(internalBoxWidthXMm, internalboxLengthYMm, internalBoxTopHeightZMm, internalboxBottomHeightZMm);
 		translate([ (battery_count_x * .25), -7 + (battery_count_y * -.25), 1]) {
-			cube([width, depth, bottom_height]);
+			cube([width+spacing_mm, depth+spacing_mm, bottom_height]);
 		}
 	}
 }
