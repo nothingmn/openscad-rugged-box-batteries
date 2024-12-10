@@ -3,17 +3,10 @@ on: [push]
 
 jobs:
   Build-STLs:
-    runs-on: ubuntu-22.04
+    runs-on: openscad/openscad:dev.2024-12-09
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-
-      - name: Setup - Install tooling
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y openscad
-          openscad --version
-
 
       - name: Batch Convert
         run: |

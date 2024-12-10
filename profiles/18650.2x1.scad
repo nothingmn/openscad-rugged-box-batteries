@@ -133,7 +133,7 @@ boxSectionSeparatorWidth = 1.2; // .1
 // ************************
 
 // The number of hinges
-numberOfHinges = 2; // 1
+numberOfHinges = 1; // 1
 // AKA: Hinge Screw Length. The full hinge width.  This is also the length of the screw you will need to assemble the case
 hingeTotalWidthMm = 25; // 1
 // The radius of the hinge pivot

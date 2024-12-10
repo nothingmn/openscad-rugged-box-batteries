@@ -5,7 +5,7 @@
 //	1.000 in (25.4 mm)[1]
 module battery_22lr(num_x, num_y) {
 	diameter_offset = 0.2;  //mm, give us a little bit of room around the item
-	spacing_mm = 1.5; 	//mm
+	spacing_mm = 2.5; 	//mm
 	height_mm = 25.4 + diameter_offset;  	//mm
 	diameter_mm = 5.7 + diameter_offset; //mm
 	height_factor_p = 0.80; //percent
