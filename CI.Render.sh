@@ -54,6 +54,8 @@ generate_and_render() {
                 echo "include <BoxBattery.scad>;"
             } > $renderFile
 
+
+            cat $renderFile
             # Create render folder if not exists
             output_dir="render/${battery_type}"
             mkdir -p "$output_dir"
