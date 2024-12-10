@@ -3,7 +3,8 @@ BoxPolygonStyle = 3; // [1:ExtraLowPoly, 2:LowPoly, 3:Curved]
 generateBoxBottom = true;
 generateBoxTop = true;
 generateLatches = true;
-
+numberOfHinges = generate22lr || generateAAA ? 1 : battery_count_x >= 9 ? 4 : battery_count_x > 7 ? 3 : battery_count_x >= 3 ? 2 : 1;
+numberOfLatches = generate22lr || generateAAA ? 1 : battery_count_x >= 9 ? 4 : battery_count_x > 7 ? 3 : battery_count_x >= 3 ? 2 : 1;
 
 
 // *************************
