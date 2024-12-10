@@ -1,6 +1,8 @@
 #!/bin/bash
 tag=$(date +"%Y-%m-%d-%I-%M")
 release_name="CIRelease-$tag"
+openscad --version
+openscad --help
 
 render_scad_file() {
     local scad_file=$1
@@ -11,15 +13,15 @@ render_scad_file() {
 
     if [[ $x -eq 0 && $y -eq 0 ]]; then
         # Define file paths without x and y in the filename
-        openscad_file="${output_dir}/${battery_type}.openscad.3mf"
+        openscad_file="${output_dir}/${battery_type}.3mf"
     else
         # Define file paths with x and y in the filename
-        openscad_file="${output_dir}/${battery_type}.${x}x${y}.openscad.3mf"
+        openscad_file="${output_dir}/${battery_type}.${x}x${y}.3mf"
     fi
     echo "Starting to render '$scad_file' via openscad to 3mf to $openscad_file"
     # Run OpenSCAD
     # https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment
-    /usr/bin/openscad --autocenter --render --viewall --export-format binstl -o "$openscad_file" "$scad_file"
+    openscad --autocenter --render --viewall -o "$openscad_file" "$scad_file"
 
     echo "Final file is $scad_file"
 }
@@ -99,9 +101,6 @@ main() {
     local battery_type=$1
     echo "Timestamp: $tag"
     renderFile="CI.Render.scad"
-
-    /usr/bin/openscad --help
-    /usr/bin/openscad --version
 
     # Check for specific battery type or default to rendering all profiles
     if [[ -z "$battery_type" ]]; then

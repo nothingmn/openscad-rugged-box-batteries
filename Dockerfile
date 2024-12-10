@@ -1,24 +1,18 @@
-# Use the latest Ubuntu as the base image
-FROM ubuntu:22.04
+FROM openscad/openscad:dev.2024-12-09
+
+# Copy all local files to the image
+COPY . /app
+
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy all local files to the image
-COPY . .
+# Set up the /render volume
+VOLUME /app/render
 
-# Update the package list and install required packages
-RUN apt-get update && \
-    apt-get install -y openscad && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf .git && \
-    rm -rf .gitignore && \
-    rm -rf .github && \
-    rm -rf *.md && \
-    chmod +x CI.Render.sh
+# Copy the CI.Render.sh script into the container (optional, if you have the script locally)
+# ADD or COPY would be used to place the script into the image, e.g.,
+# COPY CI.Render.sh /path/to/CI.Render.sh
 
-# Expose the "render" folder for output
-VOLUME /render
-
-# Set the entrypoint to execute the script
-ENTRYPOINT ["./CI.Render.sh"]
+# Define the entry point to execute CI.Render.sh
+ENTRYPOINT ["/app/CI.Render.sh"]
