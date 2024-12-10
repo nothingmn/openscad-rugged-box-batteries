@@ -1,9 +1,9 @@
-name: Rugged Box Auto Build AAA
+name: Rugged Box Auto Build 12G3
 on: [push]
 
 jobs:
   Build-STLs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
@@ -11,17 +11,17 @@ jobs:
       - name: Setup - Install tooling
         run: |
           sudo apt-get update
-          sudo apt-get install -y openscad admesh
+          sudo apt-get install -y openscad
           openscad --version
           admesh --version
 
       - name: Batch Convert
         run: |
           chmod +x CI.Render.sh
-          ./CI.Render.sh AAA
+          ./CI.Render.sh 12G3
 
       - name: Set Artifact Name
-        run: echo "ARTIFACT_NAME=AAA-$(date +'%Y-%m-%d_%H-%M-%S')-${GITHUB_SHA}" | sed 's/[:"]/./g' >> $GITHUB_ENV
+        run: echo "ARTIFACT_NAME=12G3-$(date +'%Y-%m-%d_%H-%M-%S')-${GITHUB_SHA}" | sed 's/[:"]/./g' >> $GITHUB_ENV
   
       - name: Upload Rendered Files
         uses: actions/upload-artifact@v3

@@ -1,9 +1,9 @@
-name: Rugged Box Auto Build 20G234
+name: Rugged Box Auto Build 3006
 on: [push]
 
 jobs:
   Build-STLs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
@@ -11,17 +11,17 @@ jobs:
       - name: Setup - Install tooling
         run: |
           sudo apt-get update
-          sudo apt-get install -y openscad admesh
+          sudo apt-get install -y openscad
           openscad --version
           admesh --version
 
       - name: Batch Convert
         run: |
           chmod +x CI.Render.sh
-          ./CI.Render.sh 20G234
+          ./CI.Render.sh 3006
 
       - name: Set Artifact Name
-        run: echo "ARTIFACT_NAME=20G234-$(date +'%Y-%m-%d_%H-%M-%S')-${GITHUB_SHA}" | sed 's/[:"]/./g' >> $GITHUB_ENV
+        run: echo "ARTIFACT_NAME=3006-$(date +'%Y-%m-%d_%H-%M-%S')-${GITHUB_SHA}" | sed 's/[:"]/./g' >> $GITHUB_ENV
   
       - name: Upload Rendered Files
         uses: actions/upload-artifact@v3

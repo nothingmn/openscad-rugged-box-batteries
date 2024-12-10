@@ -1,5 +1,5 @@
 # Use the latest Ubuntu as the base image
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -9,7 +9,7 @@ COPY . .
 
 # Update the package list and install required packages
 RUN apt-get update && \
-    apt-get install -y openscad admesh && \
+    apt-get install -y openscad && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf .git && \
     rm -rf .gitignore && \

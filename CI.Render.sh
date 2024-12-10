@@ -11,63 +11,17 @@ render_scad_file() {
 
     if [[ $x -eq 0 && $y -eq 0 ]]; then
         # Define file paths without x and y in the filename
-        openscad_file="${output_dir}/${battery_type}.openscad.stl"
-        admesh_file="${output_dir}/${battery_type}.admesh_fixed.stl"
-        final_file="${output_dir}/${battery_type}.stl"
+        openscad_file="${output_dir}/${battery_type}.openscad.3mf"
     else
         # Define file paths with x and y in the filename
-        openscad_file="${output_dir}/${battery_type}.${x}x${y}.openscad.stl"
-        admesh_file="${output_dir}/${battery_type}.${x}x${y}.admesh_fixed.stl"
-        final_file="${output_dir}/${battery_type}.${x}x${y}.stl"
+        openscad_file="${output_dir}/${battery_type}.${x}x${y}.openscad.3mf"
     fi
-
-    echo "Rendering SCAD file: $scad_file"
-    echo "Output Directory: $output_dir"
-    echo "OpenSCAD Output: $openscad_file"
-    echo "Admesh Output: $admesh_file"
-    echo "Final File: $final_file"
-    
-    cat $scad_file
-    echo "starting to render via openscad"
+    echo "starting to render via openscad to 3mf"
     # Run OpenSCAD
     # https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment
-    time /usr/bin/openscad --autocenter --render --viewall -o "$openscad_file" --export-format binstl "$scad_file"
-    file_size=$(stat --format="%s" "$openscad_file")
-    echo "Done render via openscad.  The size of the file $openscad_file is $file_size bytes."
-    if [ $? -eq 0 ]; then
-        echo "Completed SCAD Render to $openscad_file, starting admesh"
+    time /usr/bin/openscad --autocenter --render --viewall -o "$openscad_file" --export-format 3mf "$scad_file"
 
-        # Run Admesh
-        # https://admesh.readthedocs.io/en/latest/cli.html#examples
-        time admesh --nearby --fill-holes --remove-unconnected --normal-directions --normal-values "$openscad_file" --write-binary-stl="$admesh_file"
-        if [ $? -eq 0 ]; then
-            echo "Completed admesh fix to $admesh_file, all done"
-
-            # Clean up and rename
-            mv "$admesh_file" "$final_file"
-            rm -f "$openscad_file"
-
-            final_file_size=$(stat --format="%s" "$final_file")
-            echo "Done with admesh entirely. The size of the file $final_file is $final_file_size bytes."
-
-            # Calculate the difference
-            file_size_difference=$((final_file_size - file_size))
-
-            # Echo the difference
-            echo "Admesh saved us $file_size_difference bytes."
-        else
-            echo "Admesh failed, keeping OpenSCAD output"
-
-            # Keep only the OpenSCAD output
-            mv "$openscad_file" "$final_file"
-            rm -f "$admesh_file"
-        fi
-    else
-        echo "OpenSCAD failed, no files generated"
-        exit 1
-    fi
-
-    echo "Final file is $final_file"
+    echo "Final file is $scad_file"
 }
 
 
