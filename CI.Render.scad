@@ -1,13 +1,12 @@
-
 $fn=360;
 generate18650 = false;
-generateAA = false;
+generateAA = true;
 generateAAA = false;
 generateD = false;
 generateC = false;
 generateCR132A = false;
 generate18350 = false;
-generateCR2 = true;
+generateCR2 = false;
 generateCR2032 = false;
 generate9v = false;
 generate22lr = false;
@@ -29,7 +28,6 @@ generate3006 = false;
 generate3030 = false;
 generate4103 = false;
 generate410212 = false;
-battery_count_x = 4;
-battery_count_y = 4;
-
+battery_count_x = 2;
+battery_count_y = 3;
 include <BoxBattery.scad>;
