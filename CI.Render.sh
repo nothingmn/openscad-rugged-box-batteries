@@ -19,7 +19,7 @@ render_scad_file() {
     echo "starting to render via openscad to 3mf"
     # Run OpenSCAD
     # https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment
-    time /usr/bin/openscad --autocenter --render --viewall -o "$openscad_file" --export-format 3mf "$scad_file"
+    time /usr/bin/openscad --autocenter --render --viewall -o "$openscad_file" "$scad_file"
 
     echo "Final file is $scad_file"
 }
