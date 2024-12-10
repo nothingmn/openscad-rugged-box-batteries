@@ -49,12 +49,8 @@ generate_and_render() {
                 done
                 echo "battery_count_x = $x;"
                 echo "battery_count_y = $y;"
-                echo "numberOfHinges = battery_count_x >= 8 ? 4 :"
-                echo "                 battery_count_x >= 6 ? 3 :"
-                echo "                 battery_count_x >= 3 ? 2 : 1;"
-                echo ""
-                echo "numberOfLatches = battery_count_x <= 6 ? 1 : 2;"
-                echo ""			                  
+                echo "numberOfHinges = generate22lr || generateAAA ? 1 : battery_count_x >= 9 ? 4 : battery_count_x > 7 ? 3 : battery_count_x >= 3 ? 2 : 1;"
+                echo "numberOfLatches = generate22lr || generateAAA ? 1 : battery_count_x >= 9 ? 4 : battery_count_x > 7 ? 3 : battery_count_x >= 3 ? 2 : 1;"
                 echo "include <BoxBattery.scad>;"
             } > $renderFile
 
