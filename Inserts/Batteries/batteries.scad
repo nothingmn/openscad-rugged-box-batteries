@@ -31,7 +31,7 @@ module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, d
     // Calculate dimensions
     spacing = diameter_mm + spacing_mm;  // Space per battery
     bottom_height = height_mm * height_factor_p; // Total box height of the bottom
-    top_height = height_mm - bottom_height; // Total box height of the bottom
+    top_height = height_mm - bottom_height - spacing_mm; // Total box height of the bottom
     width = spacing * countX + spacing_mm;  // Total box width
     depth = spacing * countY + spacing_mm;  // Total box depth
 

@@ -1,6 +1,6 @@
 $fn=360;
 generate18650 = false;
-generateAA = false;
+generateAA = true;
 generateAAA = false;
 generateD = false;
 generateC = false;
@@ -9,7 +9,7 @@ generate18350 = false;
 generateCR2 = false;
 generateCR2032 = false;
 generate9v = false;
-generate22lr = true;
+generate22lr = false;
 generate7mm = false;
 generate12G3 = false;
 generate12G234 = false;
@@ -28,17 +28,19 @@ generate3006 = false;
 generate3030 = false;
 generate4103 = false;
 generate410212 = false;
-battery_count_x = 5;
-battery_count_y = 2;
+battery_count_x = 7;
+battery_count_y = 7;
 
 
 numberOfHinges = generate22lr || generateAAA ? 1 :
-					battery_count_x >= 8 ? 4 :
-						battery_count_x >= 6 ? 3 :
+					battery_count_x >= 9 ? 4 :
+						battery_count_x > 7 ? 3 :
 							battery_count_x >= 3 ? 2 : 1;
 
 numberOfLatches = generate22lr || generateAAA ? 1 :
-					battery_count_x <= 6 ? 1 : 2;
+					battery_count_x >= 9 ? 4 :
+						battery_count_x > 7 ? 3 :
+							battery_count_x >= 3 ? 2 : 1;
 
 
 include <BoxBattery.scad>;
