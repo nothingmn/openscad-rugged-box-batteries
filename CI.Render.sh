@@ -109,6 +109,37 @@ main() {
     else
         
         case "$battery_type" in
+            "all")
+                generate_and_render "18650" 2 2 5 5
+                generate_and_render "AA" 2 2 10 10
+                generate_and_render "AAA" 2 2 10 10
+                generate_and_render "D" 2 2 5 5
+                generate_and_render "C" 2 2 5 5
+                generate_and_render "CR132A" 5 5 10 10
+                generate_and_render "CR2" 5 5 10 10
+                generate_and_render "CR2032" 5 5 10 10
+                generate_and_render "9v" 2 2 5 5
+                generate_and_render "22lr" 5 5 10 10
+                generate_and_render "7mm" 4 4 10 10
+                generate_and_render "12G3" 4 4 10 10
+                generate_and_render "243" 4 4 10 10
+                generate_and_render "223" 4 4 10 10
+                generate_and_render "65Creedmor" 4 4 10 10
+                generate_and_render "16G234" 4 4 10 10
+                generate_and_render "12G234" 4 4 10 10
+                generate_and_render "20G3" 4 4 10 10
+                generate_and_render "20G234" 4 4 10 10
+                generate_and_render "28G234" 4 4 10 10
+                generate_and_render "270" 4 4 10 10
+                generate_and_render "300" 4 4 10 10
+                generate_and_render "300WinMag" 4 4 10 10
+                generate_and_render "308" 4 4 10 10
+                generate_and_render "3006" 4 4 10 10
+                generate_and_render "3030" 4 4 10 10
+                generate_and_render "4103" 4 4 10 10
+                generate_and_render "410212" 4 4 10 10
+                render_all_profiles
+                ;;
             "18650")
                 generate_and_render "18650" 2 2 5 5
                 ;;
@@ -193,6 +224,9 @@ main() {
             "410212")
                 generate_and_render "410212" 4 4 10 10
                 ;;
+            "profiles")
+                render_all_profiles
+                ;;
             *)
                 if [ -f "$battery_type" ]; then
                     echo "Processing file: $battery_type"
@@ -212,7 +246,10 @@ main() {
                     for type in "${battery_types[@]}"; do
                         output+="$type "
                     done
-                    echo "${output% }"               
+                    echo "${output% }"      
+                    echo "Additional render options include:"
+                    echo "'all' - which render everything"
+                    echo "'profiles' - which will render everything in the profiles folder"         
                     exit 1
                 fi
                 ;;
