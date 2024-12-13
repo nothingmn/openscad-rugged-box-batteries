@@ -3,13 +3,15 @@ BoxPolygonStyle = 3; // [1:ExtraLowPoly, 2:LowPoly, 3:Curved]
 generateBoxBottom = true;
 generateBoxTop = true;
 generateLatches = true;
-numberOfHinges = generate22lr || generateAAA ? 1 : battery_count_x >= 9 ? 4 : battery_count_x > 7 ? 3 : battery_count_x >= 3 ? 2 : 1;
-numberOfLatches = generate22lr || generateAAA ? 1 : battery_count_x >= 9 ? 4 : battery_count_x > 7 ? 3 : battery_count_x >= 3 ? 2 : 1;
+numberOfHinges = generate22lr || generateAAA || generateCR2032 || generateCR2430 ? 1 : battery_count_x >= 9 ? 4 : battery_count_x > 7 ? 3 : battery_count_x >= 3 ? 2 : 1;
+numberOfLatches = generate22lr || generateAAA || generateCR2032 || generateCR2430 ? 1 : battery_count_x >= 9 ? 4 : battery_count_x > 7 ? 3 : battery_count_x >= 3 ? 2 : 1;
 
 
 // *************************
 // **** Battery Inserts ****
 // *************************
+
+/*CYLINDER CELLS*/
 if(generate18650)  {
    battery_18650(battery_count_x, battery_count_y);
 }
@@ -35,12 +37,28 @@ if(generate18350)  {
 if(generateCR2)  {
     battery_CR2(battery_count_x, battery_count_y);
 }
-if(generateCR2032)  {
-    battery_CR2032(battery_count_x, battery_count_y, 50);
 
+/*COIN CELLS*/
+
+if(generateCR2032)  {
+    battery_CR2032(battery_count_x, battery_count_y);
+}
+if(generateCR2430)  {
+    battery_CR2430(battery_count_x, battery_count_y);
+}
+if(generateCR2450)  {
+    battery_CR2450(battery_count_x, battery_count_y);
+}
+if(generateA76)  {
+    battery_A76(battery_count_x, battery_count_y);
 }
 
+/*BOX CELLS*/
 
+if(generate9v)  {
+    battery_9v(battery_count_x, battery_count_y);
+
+}
 // *****************************
 // **** END Battery Inserts ****
 // *****************************

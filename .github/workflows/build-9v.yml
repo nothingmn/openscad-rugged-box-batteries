@@ -1,4 +1,4 @@
-name: Rugged Box Auto Build Profiles
+name: Rugged Box Auto Build 9v
 on: [push]
 
 jobs:
@@ -11,10 +11,10 @@ jobs:
       - name: Batch Convert
         run: |
           chmod +x CI.Render.sh
-          ./CI.Render.sh
+          ./CI.Render.sh 9v
 
       - name: Set Artifact Name
-        run: echo "ARTIFACT_NAME=profiles-$(date +'%Y-%m-%d_%H-%M-%S')-${GITHUB_SHA}" | sed 's/[:"]/./g' >> $GITHUB_ENV
+        run: echo "ARTIFACT_NAME=9v-$(date +'%Y-%m-%d_%H-%M-%S')-${GITHUB_SHA}" | sed 's/[:"]/./g' >> $GITHUB_ENV
   
       - name: Upload Rendered Files
         uses: actions/upload-artifact@v3

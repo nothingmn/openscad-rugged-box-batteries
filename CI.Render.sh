@@ -28,7 +28,7 @@ render_scad_file() {
 
 
 # Array of all battery types
-battery_types=("18650" "AA" "AAA" "D" "C" "CR132A" "18350" "CR2" "CR2032" "9v" "22lr" "7mm" "12G3" "12G234" "16G234" "20G3" "20G234" "28G234" "65Creedmor" "223" "243" "270" "300" "300WinMag" "308" "3006" "3030" "4103" "410212")
+battery_types=("18650" "AA" "AAA" "D" "C" "CR132A" "18350" "CR2" "CR2032" "CR2430" "CR2450" "A76" "9v" "22lr" "7mm" "12G3" "12G234" "16G234" "20G3" "20G234" "28G234" "65Creedmor" "223" "243" "270" "300" "300WinMag" "308" "3006" "3030" "4103" "410212")
 
 generate_and_render() {
     local battery_type=$1
@@ -118,6 +118,9 @@ main() {
                 generate_and_render "CR132A" 5 5 10 10
                 generate_and_render "CR2" 5 5 10 10
                 generate_and_render "CR2032" 5 5 10 10
+                generate_and_render "CR2430" 5 5 10 10
+                generate_and_render "CR2450" 5 5 10 10
+                generate_and_render "A76" 5 5 10 10
                 generate_and_render "9v" 2 2 5 5
                 generate_and_render "22lr" 5 5 10 10
                 generate_and_render "7mm" 4 4 10 10
@@ -163,6 +166,15 @@ main() {
                 ;;
             "CR2032")
                 generate_and_render "CR2032" 5 5 10 10
+                ;;
+            "CR2430")
+                generate_and_render "CR2430" 5 5 10 10
+                ;;
+            "CR2450")
+                generate_and_render "CR2450" 5 5 10 10
+                ;;
+            "A76")
+                generate_and_render "A76" 5 5 10 10
                 ;;
             "9v")
                 generate_and_render "9v" 2 2 5 5

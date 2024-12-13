@@ -1,14 +1,25 @@
 $fn=360;
+
+/*CYLINDER CELLS*/
 generate18650 = false;
-generateAA = true;
+generateAA = false;
 generateAAA = false;
 generateD = false;
 generateC = false;
 generateCR132A = false;
 generate18350 = false;
 generateCR2 = false;
+
+/*COIN CELLS*/
 generateCR2032 = false;
+generateCR2430 = false;
+generateCR2450 = true;
+generateA76 = false;
+
+/*BOX*/
 generate9v = false;
+
+/*AMMO*/
 generate22lr = false;
 generate7mm = false;
 generate12G3 = false;
@@ -29,5 +40,5 @@ generate3030 = false;
 generate4103 = false;
 generate410212 = false;
 battery_count_x = 2;
-battery_count_y = 3;
+battery_count_y = 4;
 include <BoxBattery.scad>;
