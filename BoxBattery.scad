@@ -57,8 +57,17 @@ if(generateA76)  {
 
 if(generate9v)  {
     battery_9v(battery_count_x, battery_count_y);
-
 }
+if(generateMicroSD)  {
+    battery_MicroSD(battery_count_x, battery_count_y);
+}
+if(generateSD)  {
+    battery_SD(battery_count_x, battery_count_y);
+}
+if(generateCF)  {
+    battery_CF(battery_count_x, battery_count_y);
+}
+
 // *****************************
 // **** END Battery Inserts ****
 // *****************************

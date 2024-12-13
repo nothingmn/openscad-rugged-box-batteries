@@ -13,6 +13,9 @@ include <CR2430.scad>
 include <CR2450.scad>
 
 include <9v.scad>
+include <MicroSD.scad>
+include <SD.scad>
+include <CF.scad>
 
 include <22lr.scad>
 include <7mm.scad>

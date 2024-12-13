@@ -13,11 +13,14 @@ generateCR2 = false;
 /*COIN CELLS*/
 generateCR2032 = false;
 generateCR2430 = false;
-generateCR2450 = true;
+generateCR2450 = false;
 generateA76 = false;
 
 /*BOX*/
 generate9v = false;
+generateMicroSD = false;
+generateSD = false;
+generateCF = true;
 
 /*AMMO*/
 generate22lr = false;
