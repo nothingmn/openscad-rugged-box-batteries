@@ -21,9 +21,13 @@ render_scad_file() {
     echo "Starting to render '$scad_file' via openscad to 3mf to $openscad_file"
     # Run OpenSCAD
     # https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment
-    openscad --autocenter --render --viewall -o "$openscad_file" "$scad_file"
+    if [ ! -f "$openscad_file" ]; then
+        openscad --autocenter --render --viewall -o "$openscad_file" "$scad_file"
+    else
+        echo "File $openscad_file already exists. Skipping render."
+    fi
 
-    echo "Final file is $scad_file"
+    echo "Final file is $openscad_file"
 }
 
 
