@@ -37,11 +37,16 @@ include <3030.scad>
 include <4103.scad>
 include <410212.scad>
 
+innerbox_minimum_height_because_the_hinge_gets_in_the_way = 20;//mm
+
 module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm) {
     // Calculate dimensions
+
+	use_height_mm = (innerbox_minimum_height_because_the_hinge_gets_in_the_way > height_mm ) ? innerbox_minimum_height_because_the_hinge_gets_in_the_way : height_mm;
+
     spacing = diameter_mm + spacing_mm;  // Space per battery
-    bottom_height = height_mm * height_factor_p; // Total box height of the bottom
-    top_height = height_mm - bottom_height - spacing_mm; // Total box height of the bottom
+    bottom_height = use_height_mm * height_factor_p; // Total box height of the bottom
+    top_height = use_height_mm - bottom_height - spacing_mm; // Total box height of the bottom
     width = spacing * countX + spacing_mm;  // Total box width
     depth = spacing * countY + spacing_mm;  // Total box depth
 
@@ -85,8 +90,12 @@ Cubed batteries, ie 9v
 
 module battery_insert_cube(countX, countY, width_mm, depth_mm, height_mm, height_factor_p, spacing_mm) {
     // Calculate dimensions
-    bottom_height = height_mm * height_factor_p; // Total box height of the bottom
-    top_height = height_mm - bottom_height - spacing_mm; // Total box height of the bottom
+
+	use_height_mm = (innerbox_minimum_height_because_the_hinge_gets_in_the_way > height_mm ) ? innerbox_minimum_height_because_the_hinge_gets_in_the_way : height_mm;
+
+
+    bottom_height = use_height_mm * height_factor_p; // Total box height of the bottom
+    top_height = use_height_mm - bottom_height - spacing_mm; // Total box height of the bottom
     width = (countX * (width_mm + spacing_mm));  // Total box width
     depth = (countY * (depth_mm + spacing_mm));  // Total box depth
 
@@ -100,7 +109,7 @@ module battery_insert_cube(countX, countY, width_mm, depth_mm, height_mm, height
 		for (y = [0:countY-1]) {
 			for (x = [0:countX-1]) {
 				translate([x *  (width_mm + spacing_mm), y * (depth_mm + spacing_mm), spacing_mm]) {
-					battery_single_cube(width_mm, depth_mm, height_mm);
+					battery_single_cube(width_mm, depth_mm, use_height_mm);
 				}
 			}
 		}
@@ -116,10 +125,11 @@ COIN CELLS
 
 module battery_insert_coin(countX, countY, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm) {
 
+	use_height_mm = (innerbox_minimum_height_because_the_hinge_gets_in_the_way > height_mm ) ? innerbox_minimum_height_because_the_hinge_gets_in_the_way : height_mm;
 
 	height_of_battery_on_its_side_mm = diameter_mm;
 	width_of_battery_on_its_side_mm = diameter_mm;
-	depth_of_battery_on_its_side_mm = height_mm;
+	depth_of_battery_on_its_side_mm = use_height_mm;
 
     // Calculate dimensions
     spacing_z = height_of_battery_on_its_side_mm + spacing_mm; 
