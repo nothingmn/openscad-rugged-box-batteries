@@ -4,7 +4,7 @@ module battery_CR2450(num_x, num_y) {
 	spacing_mm = 3; 	//mm
 	height_mm = 4.85 + diameter_offset;  	//mm
 	diameter_mm = 24.5 + diameter_offset; //mm
-	height_factor_p = 0.80; //percent
+	height_factor_p = 0.50; //percent
 
 	battery_insert_coin(num_x, num_y, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm);
 }

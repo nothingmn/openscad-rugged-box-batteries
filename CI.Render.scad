@@ -6,7 +6,7 @@ generateAA = false;
 generateAAA = false;
 generateD = false;
 generateC = false;
-generateCR132A = false;
+generateCR132A = true;
 generate18350 = false;
 generateCR2 = false;
 
@@ -18,7 +18,7 @@ generateA76 = false;
 
 /*BOX*/
 generate9v = false;
-generateMicroSD = true;
+generateMicroSD = false;
 generateSD = false;
 generateCF = false;
 

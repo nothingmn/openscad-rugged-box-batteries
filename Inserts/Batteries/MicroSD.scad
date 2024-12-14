@@ -8,7 +8,7 @@ module battery_MicroSD(num_x, num_y) {
 	depth_mm = 1 + spacing_mm / 2;  //mm, give us a little bit of room around the battery
 	height_mm = 15 + spacing_mm / 2;  	//mm
 	width_mm = 11 + spacing_mm / 2; //mm
-	height_factor_p = 0.80; //percent
+	height_factor_p = 0.50; //percent
 
 	battery_insert_cube(num_x, num_y, width_mm, depth_mm, height_mm, height_factor_p, spacing_mm);
 }
