@@ -6,7 +6,7 @@ generateAA = false;
 generateAAA = false;
 generateD = false;
 generateC = false;
-generateCR132A = true;
+generateCR132A = false;
 generate18350 = false;
 generateCR2 = false;
 
@@ -14,7 +14,7 @@ generateCR2 = false;
 generateCR2032 = false;
 generateCR2430 = false;
 generateCR2450 = false;
-generateA76 = false;
+generateA76 = true;
 
 /*BOX*/
 generate9v = false;

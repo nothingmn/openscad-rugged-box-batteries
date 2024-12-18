@@ -125,7 +125,7 @@ COIN CELLS
 
 module battery_insert_coin(countX, countY, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm) {
 
-	use_height_mm = (innerbox_minimum_height_because_the_hinge_gets_in_the_way > height_mm ) ? innerbox_minimum_height_because_the_hinge_gets_in_the_way : height_mm;
+	use_height_mm = height_mm;//(innerbox_minimum_height_because_the_hinge_gets_in_the_way > height_mm ) ? innerbox_minimum_height_because_the_hinge_gets_in_the_way : height_mm;
 
 	height_of_battery_on_its_side_mm = diameter_mm;
 	width_of_battery_on_its_side_mm = diameter_mm;
@@ -147,7 +147,7 @@ module battery_insert_coin(countX, countY, height_mm, diameter_mm, height_factor
         battery_box_coin(bottom_height, top_height, internal_width, internal_depth, spacing_mm);
 		
 		//position us just over the box
-		translate([spacing_x/2 + boxWallWidthMm, (spacing_y/1.5) - boxWallWidthMm, bottom_height])
+		translate([spacing_x/2 + boxWallWidthMm, (spacing_y/2.5) - boxWallWidthMm, bottom_height])
 		// Battery slots
 		for (y = [0:countY-1]) {
 			for (x = [0:countX-1]) {
