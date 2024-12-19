@@ -7,6 +7,13 @@ numberOfHinges = generate22lr || generateAAA || generateCR2032 || generateCR2430
 numberOfLatches = generate22lr || generateAAA || generateCR2032 || generateCR2430 || generateMicroSD || generateSD  || generatenumber2pencil || generatesharpie ? 1 : battery_count_x >= 9 ? 4 : battery_count_x > 7 ? 3 : battery_count_x >= 3 ? 2 : 1;
 
 
+// The type of seal for the case. 1 = Circular Non-Gasket (less water resistant), 2 = Gasket type seal (more water resistant)
+boxSealType = 1; // [1:NonGasket,2:Gasket]
+// Should feet be generated and the feet connections be cutout from the containet top and bottom.  (NOTE: this will require some glue... sorry, no tome to create a snap-in connector)
+isFeetAdded = false;
+// The width of the feet
+feetwidthMm = 4; // 1
+
 // *************************
 // **** Battery Inserts ****
 // *************************

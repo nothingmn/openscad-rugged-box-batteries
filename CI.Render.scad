@@ -46,6 +46,6 @@ generate410212 = false;
 generatenumber2pencil = false;
 generatesharpie = true;
 
-battery_count_x = 5;
-battery_count_y = 5;
+battery_count_x = 2;
+battery_count_y = 2;
 include <BoxBattery.scad>;

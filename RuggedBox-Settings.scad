@@ -71,8 +71,6 @@ boxWallWidthMm = 3.0; // [1:0.1:10]
 // The chamfer radius of the boxes corners.  (NOTE1: the floor/top radius is slightly differentthan the sides to eliminate the need for supports. NOTE2: If you want square inside corners, the boxWallWidthMm must be >= the boxChamferRadiusMm.)
 boxChamferRadiusMm = 0; // .1  //BATTERY NOTE: set this to 0, so its squared off inside.
 
-// The type of seal for the case. 1 = Circular Non-Gasket (less water resistant), 2 = Gasket type seal (more water resistant)
-boxSealType = 1; // [1:NonGasket,2:Gasket]
 // TODO: Add constraint for this
 // The radius of the seal (NOTE: 2*boxCircularSealRadius MUST be < the (boxWallWidthMm+rimWidthMm))
 boxCircularSealRadius = 1.1; // .1
@@ -190,10 +188,7 @@ insertTolerance = 0.1; // .05
 // **** Feet Settings **** 
 // ***********************
 
-// Should feet be generated and the feet connections be cutout from the containet top and bottom.  (NOTE: this will require some glue... sorry, no tome to create a snap-in connector)
-isFeetAdded = false;
-// The width of the feet
-feetwidthMm = 4; // 1
+
 // the length of the feet
 feetLengthMm = 10; // 1
 // the depth that the feet will insert into the top and bottom cases
