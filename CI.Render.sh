@@ -150,7 +150,8 @@ main() {
                 generate_and_render "3030" 4 4 10 10
                 generate_and_render "4103" 4 4 10 10
                 generate_and_render "410212" 4 4 10 10
-                generate_and_render "number2pencil" 4 4 10 10
+                generate_and_render "number2pencil" 2 2 10 10
+                generate_and_render "sharpie" 2 2 10 10
                 render_all_profiles
                 ;;
             "18650")
@@ -258,7 +259,7 @@ main() {
                 generate_and_render "410212" 4 4 10 10
                 ;;
             "number2pencil")
-                generate_and_render "number2pencil" 4 4 10 10
+                generate_and_render "number2pencil" 2 2 10 10
                 ;;
             "sharpie")
                 generate_and_render "sharpie" 2 2 10 10
