@@ -43,7 +43,8 @@ generate3030 = false;
 generate4103 = false;
 generate410212 = false;
 
-generatenumber2pencil = true;
+generatenumber2pencil = false;
+generatesharpie = true;
 
 battery_count_x = 5;
 battery_count_y = 5;

@@ -3,8 +3,8 @@ BoxPolygonStyle = 3; // [1:ExtraLowPoly, 2:LowPoly, 3:Curved]
 generateBoxBottom = true;
 generateBoxTop = true;
 generateLatches = true;
-numberOfHinges = generate22lr || generateAAA || generateCR2032 || generateCR2430 || generateMicroSD || generateSD || generatenumber2pencil ? 1 : battery_count_x >= 9 ? 4 : battery_count_x > 7 ? 3 : battery_count_x >= 3 ? 2 : 1;
-numberOfLatches = generate22lr || generateAAA || generateCR2032 || generateCR2430 || generateMicroSD || generateSD  || generatenumber2pencil ? 1 : battery_count_x >= 9 ? 4 : battery_count_x > 7 ? 3 : battery_count_x >= 3 ? 2 : 1;
+numberOfHinges = generate22lr || generateAAA || generateCR2032 || generateCR2430 || generateMicroSD || generateSD || generatenumber2pencil || generatesharpie ? 1 : battery_count_x >= 9 ? 4 : battery_count_x > 7 ? 3 : battery_count_x >= 3 ? 2 : 1;
+numberOfLatches = generate22lr || generateAAA || generateCR2032 || generateCR2430 || generateMicroSD || generateSD  || generatenumber2pencil || generatesharpie ? 1 : battery_count_x >= 9 ? 4 : battery_count_x > 7 ? 3 : battery_count_x >= 3 ? 2 : 1;
 
 
 // *************************
@@ -137,6 +137,11 @@ if(generate7mm)  {
 
 if(generatenumber2pencil)  {
    battery_number2pencil(battery_count_x, battery_count_y);
+}
+
+
+if(generatesharpie)  {
+   battery_sharpie(battery_count_x, battery_count_y);
 }
 
 
