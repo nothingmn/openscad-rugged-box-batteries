@@ -32,7 +32,7 @@ render_scad_file() {
 
 
 # Array of all battery types
-battery_types=("18650" "AA" "AAA" "D" "C" "CR132A" "18350" "CR2" "CR2032" "CR2430" "CR2450" "A76" "9v" "SD" "MicroSD" "CF" "22lr" "7mm" "12G3" "12G234" "16G234" "20G3" "20G234" "28G234" "65Creedmor" "223" "243" "270" "300" "300WinMag" "308" "3006" "3030" "4103" "410212")
+battery_types=("18650" "AA" "AAA" "D" "C" "CR132A" "18350" "CR2" "CR2032" "CR2430" "CR2450" "A76" "9v" "SD" "MicroSD" "CF" "22lr" "7mm" "12G3" "12G234" "16G234" "20G3" "20G234" "28G234" "65Creedmor" "223" "243" "270" "300" "300WinMag" "308" "3006" "3030" "4103" "410212", "number2pencil")
 
 generate_and_render() {
     local battery_type=$1
@@ -150,6 +150,7 @@ main() {
                 generate_and_render "3030" 4 4 10 10
                 generate_and_render "4103" 4 4 10 10
                 generate_and_render "410212" 4 4 10 10
+                generate_and_render "number2pencil" 4 4 10 10
                 render_all_profiles
                 ;;
             "18650")
@@ -255,6 +256,9 @@ main() {
                 ;;
             "410212")
                 generate_and_render "410212" 4 4 10 10
+                ;;
+            "number2pencil")
+                generate_and_render "number2pencil" 4 4 10 10
                 ;;
             "profiles")
                 render_all_profiles

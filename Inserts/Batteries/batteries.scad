@@ -37,6 +37,8 @@ include <3030.scad>
 include <4103.scad>
 include <410212.scad>
 
+ include <Number2Pencil.scad>
+
 innerbox_minimum_height_because_the_hinge_gets_in_the_way = 15;//mm
 
 module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm) {

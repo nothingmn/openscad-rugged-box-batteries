@@ -14,7 +14,7 @@ generateCR2 = false;
 generateCR2032 = false;
 generateCR2430 = false;
 generateCR2450 = false;
-generateA76 = true;
+generateA76 = false;
 
 /*BOX*/
 generate9v = false;
@@ -42,6 +42,9 @@ generate3006 = false;
 generate3030 = false;
 generate4103 = false;
 generate410212 = false;
-battery_count_x = 3;
-battery_count_y = 4;
+
+generatenumber2pencil = true;
+
+battery_count_x = 5;
+battery_count_y = 5;
 include <BoxBattery.scad>;
