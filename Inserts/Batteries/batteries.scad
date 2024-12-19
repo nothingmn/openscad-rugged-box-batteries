@@ -149,8 +149,11 @@ module battery_insert_coin(countX, countY, height_mm, diameter_mm, height_factor
         // Outer box
         battery_box_coin(bottom_height, top_height, internal_width, internal_depth, spacing_mm);
 		
+		//y_distance = generateA76 ? (spacing_y / 1.75) : (spacing_y / 2.5) - boxWallWidthMm;
+		y_distance = generateA76 ? (depth_of_battery_on_its_side_mm / 2.5) : (depth_of_battery_on_its_side_mm / 2.5) - boxWallWidthMm;
+
 		//position us just over the box
-		translate([spacing_x/2 + boxWallWidthMm, (spacing_y/2.5) - boxWallWidthMm, bottom_height])
+		translate([spacing_x/2 + boxWallWidthMm, y_distance, bottom_height])
 		// Battery slots
 		for (y = [0:countY-1]) {
 			for (x = [0:countX-1]) {
