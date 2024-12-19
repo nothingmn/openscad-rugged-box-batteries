@@ -32,7 +32,7 @@ render_scad_file() {
 
 
 # Array of all battery types
-battery_types=("18650" "AA" "AAA" "D" "C" "CR132A" "18350" "CR2" "CR2032" "CR2430" "CR2450" "A76" "9v" "SD" "MicroSD" "CF" "22lr" "7mm" "12G3" "12G234" "16G234" "20G3" "20G234" "28G234" "65Creedmor" "223" "243" "270" "300" "300WinMag" "308" "3006" "3030" "4103" "410212", "number2pencil", "sharpie")
+battery_types=("18650" "AA" "AAA" "D" "C" "CR132A" "18350" "CR2" "CR2032" "CR2430" "CR2450" "A76" "9v" "SD" "MicroSD" "CF" "22lr" "7mm" "12G3" "12G234" "16G234" "20G3" "20G234" "28G234" "65Creedmor" "223" "243" "270" "300" "300WinMag" "308" "3006" "3030" "4103" "410212" "number2pencil" "sharpie")
 
 generate_and_render() {
     local battery_type=$1
