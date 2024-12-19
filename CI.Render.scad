@@ -18,7 +18,7 @@ generateA76 = false;
 
 /*BOX*/
 generate9v = false;
-generateMicroSD = false;
+generateMicroSD = true;
 generateSD = false;
 generateCF = false;
 
@@ -44,8 +44,8 @@ generate4103 = false;
 generate410212 = false;
 
 generatenumber2pencil = false;
-generatesharpie = true;
+generatesharpie = false;
 
-battery_count_x = 2;
-battery_count_y = 2;
+battery_count_x = 10;
+battery_count_y = 5;
 include <BoxBattery.scad>;

@@ -3,8 +3,59 @@ BoxPolygonStyle = 3; // [1:ExtraLowPoly, 2:LowPoly, 3:Curved]
 generateBoxBottom = true;
 generateBoxTop = true;
 generateLatches = true;
-numberOfHinges = generate22lr || generateAAA || generateCR2032 || generateCR2430 || generateMicroSD || generateSD || generatenumber2pencil || generatesharpie ? 1 : battery_count_x >= 9 ? 4 : battery_count_x > 7 ? 3 : battery_count_x >= 3 ? 2 : 1;
-numberOfLatches = generate22lr || generateAAA || generateCR2032 || generateCR2430 || generateMicroSD || generateSD  || generatenumber2pencil || generatesharpie ? 1 : battery_count_x >= 9 ? 4 : battery_count_x > 7 ? 3 : battery_count_x >= 3 ? 2 : 1;
+
+// Calculate numberOfHinges
+numberOfHinges = 
+    generate22lr && battery_count_x > 15 ? 3 :
+    generate22lr && battery_count_x > 6 ? 2 :
+    generate22lr && battery_count_x <= 6 ? 1 :
+    generate7mm && battery_count_x > 15 ? 3 :
+    generate7mm && battery_count_x > 6 ? 2 :
+    generate7mm && battery_count_x <= 6 ? 1 :
+    generateAAA && battery_count_x > 15 ? 3 :
+    generateAAA && battery_count_x > 6 ? 2 :
+    generateAAA && battery_count_x <= 6 ? 1 :
+    generateCR2032 && battery_count_x > 15 ? 3 :
+    generateCR2032 && battery_count_x > 6 ? 2 :
+    generateCR2032 && battery_count_x <= 6 ? 1 :
+    generateCR2430 && battery_count_x > 15 ? 3 :
+    generateCR2430 && battery_count_x > 6 ? 2 :
+    generateCR2430 && battery_count_x <= 6 ? 1 :
+    generateMicroSD && battery_count_x > 15 ? 3 :
+    generateMicroSD && battery_count_x > 6 ? 2 :
+    generateMicroSD && battery_count_x <= 6 ? 1 :
+    generateSD && battery_count_x > 15 ? 3 :
+    generateSD && battery_count_x > 6 ? 2 :
+    generateSD && battery_count_x <= 6 ? 1 :
+    generatenumber2pencil && battery_count_x > 15 ? 3 :
+    generatenumber2pencil && battery_count_x > 6 ? 2 :
+    generatenumber2pencil && battery_count_x <= 6 ? 1 :
+    generatesharpie && battery_count_x > 15 ? 3 :
+    generatesharpie && battery_count_x > 6 ? 2 :
+    generatesharpie && battery_count_x <= 6 ? 1 : 1;
+
+// Calculate numberOfLatches
+numberOfLatches = 
+    generate22lr && battery_count_x >= 15 ? 2 :
+    generate22lr && battery_count_x < 15 ? 1 :
+    generate7mm && battery_count_x >= 15 ? 2 :
+    generate7mm && battery_count_x < 15 ? 1 :
+    generateAAA && battery_count_x >= 15 ? 2 :
+    generateAAA && battery_count_x < 15 ? 1 :
+    generateCR2032 && battery_count_x >= 15 ? 2 :
+    generateCR2032 && battery_count_x < 15 ? 1 :
+    generateCR2430 && battery_count_x >= 15 ? 2 :
+    generateCR2430 && battery_count_x < 15 ? 1 :
+    generateMicroSD && battery_count_x >= 15 ? 2 :
+    generateMicroSD && battery_count_x < 15 ? 1 :
+    generateSD && battery_count_x >= 15 ? 2 :
+    generateSD && battery_count_x < 15 ? 1 :
+    generatenumber2pencil && battery_count_x >= 15 ? 2 :
+    generatenumber2pencil && battery_count_x < 15 ? 1 :
+    generatesharpie && battery_count_x >= 15 ? 2 :
+    generatesharpie && battery_count_x < 15 ? 1 : 1;
+
+
 
 
 // The type of seal for the case. 1 = Circular Non-Gasket (less water resistant), 2 = Gasket type seal (more water resistant)
