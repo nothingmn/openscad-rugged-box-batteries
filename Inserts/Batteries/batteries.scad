@@ -40,7 +40,7 @@ include <410212.scad>
  include <Number2Pencil.scad>
  include <Sharpie.scad>
 
-innerbox_minimum_height_because_the_hinge_gets_in_the_way = 15;//mm
+innerbox_minimum_height_because_the_hinge_gets_in_the_way = 17;//mm
 
 module battery_insert(countX, countY, height_mm, diameter_mm, height_factor_p, diameter_offset, spacing_mm) {
     // Calculate dimensions
@@ -130,7 +130,8 @@ module battery_insert_coin(countX, countY, height_mm, diameter_mm, height_factor
 
 	use_height_mm = height_mm;//(innerbox_minimum_height_because_the_hinge_gets_in_the_way > height_mm ) ? innerbox_minimum_height_because_the_hinge_gets_in_the_way : height_mm;
 
-	height_of_battery_on_its_side_mm = diameter_mm;
+	height_of_battery_on_its_side_mm = (innerbox_minimum_height_because_the_hinge_gets_in_the_way > diameter_mm ) ? innerbox_minimum_height_because_the_hinge_gets_in_the_way : diameter_mm;;
+	//height_of_battery_on_its_side_mm = diameter_mm;
 	width_of_battery_on_its_side_mm = diameter_mm;
 	depth_of_battery_on_its_side_mm = use_height_mm;
 
@@ -142,7 +143,7 @@ module battery_insert_coin(countX, countY, height_mm, diameter_mm, height_factor
     bottom_height = height_of_battery_on_its_side_mm * height_factor_p;
     top_height = height_of_battery_on_its_side_mm - bottom_height - spacing_mm;
 
-	internal_depth = spacing_y * countY;
+	internal_depth = generateA76 ? spacing_y * countY + 2 : spacing_y * countY - 2;
 	internal_width = spacing_x * countX + spacing_mm;
 
     difference() {

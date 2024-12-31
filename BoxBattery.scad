@@ -59,7 +59,7 @@ numberOfLatches =
 
 
 // The type of seal for the case. 1 = Circular Non-Gasket (less water resistant), 2 = Gasket type seal (more water resistant)
-boxSealType = 1; // [1:NonGasket,2:Gasket]
+boxSealType = 2; // [1:NonGasket,2:Gasket]
 // Should feet be generated and the feet connections be cutout from the containet top and bottom.  (NOTE: this will require some glue... sorry, no tome to create a snap-in connector)
 isFeetAdded = false;
 // The width of the feet

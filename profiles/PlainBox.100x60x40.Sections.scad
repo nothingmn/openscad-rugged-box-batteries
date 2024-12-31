@@ -107,15 +107,15 @@ openingTolerance = 0.1; // .05
 // **************************************
 
 // The number of horixontal sections (the number of dividers = countainerWidthXSections - 1)
-countainerWidthXSections = 1; //[1:20]
+countainerWidthXSections = 3; //[1:20]
 // This is the number of horixontal dividers to skip, this will effectively make a larger section followed by smaller ones
-numCountainerWidthXSectionsToSkip = 0; // 1
+numCountainerWidthXSectionsToSkip = 1; // 1
 // The number of virtical sections (the number of dividers = boxLengthYSections - 1)
 boxLengthYSections = 3; // [1:20]
 // This is the number of virtical dividers to skip, this will effectively make a larger section followed by smaller ones
 numBoxLengthYSectionsToSkip = 2; // 1
 // The width of the divider walls
-boxSectionSeparatorWidth = 1.2; // .1
+boxSectionSeparatorWidth = 2; // .1
 
 
 /*[Hinge Settings]*/
@@ -124,7 +124,7 @@ boxSectionSeparatorWidth = 1.2; // .1
 // ************************
 
 // The number of hinges
-numberOfHinges = 2; // 1
+numberOfHinges = 1; // 1
 // AKA: Hinge Screw Length. The full hinge width.  This is also the length of the screw you will need to assemble the case
 hingeTotalWidthMm = 25; // 1
 // The radius of the hinge pivot
@@ -146,7 +146,7 @@ hingeToleranceMm = 0.2; // .05
 // ************************
 
 // The number of latches to generate
-numberOfLatches = 2;
+numberOfLatches = 1;
 // AKA: Latch Screw Length. The total width of the latch.  This is the length of the screws needed to assemble the latch.
 latchSupportTotalWidth = 25;
 // The number in MM you want to move each hinge away from center.  If there is a middle hinge, that one won't move. NOTE: If you make this value too big, your hinge will no longer be connected to the box :-/
@@ -189,7 +189,7 @@ insertTolerance = 0.1; // .05
 // ***********************
  
 // Should feet be generated and the feet connections be cutout from the containet top and bottom.  (NOTE: this will require some glue... sorry, no tome to create a snap-in connector)
-isFeetAdded = true;
+isFeetAdded = false;
 // The width of the feet
 feetwidthMm = 4; // 1
 // the length of the feet

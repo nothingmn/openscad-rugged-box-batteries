@@ -11,10 +11,10 @@ generate18350 = false;
 generateCR2 = false;
 
 /*COIN CELLS*/
-generateCR2032 = true;
+generateCR2032 = false;
 generateCR2430 = false;
 generateCR2450 = false;
-generateA76 = false;
+generateA76 = true;
 
 /*BOX*/
 generate9v = false;
@@ -46,6 +46,6 @@ generate410212 = false;
 generatenumber2pencil = false;
 generatesharpie = false;
 
-battery_count_x = 3;
-battery_count_y = 2;
+battery_count_x = 8;
+battery_count_y = 8;
 include <BoxBattery.scad>;
