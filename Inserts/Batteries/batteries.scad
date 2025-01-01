@@ -38,7 +38,6 @@ include <4103.scad>
 include <410212.scad>
 
  include <Number2Pencil.scad>
- include <Sharpie.scad>
 
 innerbox_minimum_height_because_the_hinge_gets_in_the_way = 17;//mm
 

@@ -29,10 +29,7 @@ numberOfHinges =
     generateSD && battery_count_x <= 6 ? 1 :
     generatenumber2pencil && battery_count_x > 15 ? 3 :
     generatenumber2pencil && battery_count_x > 6 ? 2 :
-    generatenumber2pencil && battery_count_x <= 6 ? 1 :
-    generatesharpie && battery_count_x > 15 ? 3 :
-    generatesharpie && battery_count_x > 6 ? 2 :
-    generatesharpie && battery_count_x <= 6 ? 1 : 1;
+    generatenumber2pencil && battery_count_x <= 6 ? 1;
 
 // Calculate numberOfLatches
 numberOfLatches = 
@@ -51,9 +48,7 @@ numberOfLatches =
     generateSD && battery_count_x >= 15 ? 2 :
     generateSD && battery_count_x < 15 ? 1 :
     generatenumber2pencil && battery_count_x >= 15 ? 2 :
-    generatenumber2pencil && battery_count_x < 15 ? 1 :
-    generatesharpie && battery_count_x >= 15 ? 2 :
-    generatesharpie && battery_count_x < 15 ? 1 : 1;
+    generatenumber2pencil && battery_count_x < 15 ? 1;
 
 
 
@@ -196,12 +191,6 @@ if(generate7mm)  {
 if(generatenumber2pencil)  {
    battery_number2pencil(battery_count_x, battery_count_y);
 }
-
-
-if(generatesharpie)  {
-   battery_sharpie(battery_count_x, battery_count_y);
-}
-
 
 // *****************************
 // **** END Ammo Inserts ****
