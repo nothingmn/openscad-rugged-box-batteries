@@ -28,8 +28,7 @@ numberOfHinges =
     generateSD && battery_count_x > 6 ? 2 :
     generateSD && battery_count_x <= 6 ? 1 :
     generatenumber2pencil && battery_count_x > 15 ? 3 :
-    generatenumber2pencil && battery_count_x > 6 ? 2 :
-    generatenumber2pencil && battery_count_x <= 6 ? 1;
+    generatenumber2pencil && battery_count_x > 6 ? 2 : 1;
 
 // Calculate numberOfLatches
 numberOfLatches = 
@@ -47,8 +46,7 @@ numberOfLatches =
     generateMicroSD && battery_count_x < 15 ? 1 :
     generateSD && battery_count_x >= 15 ? 2 :
     generateSD && battery_count_x < 15 ? 1 :
-    generatenumber2pencil && battery_count_x >= 15 ? 2 :
-    generatenumber2pencil && battery_count_x < 15 ? 1;
+    generatenumber2pencil && battery_count_x >= 15 ? 2 : 1;
 
 
 
